@@ -198,12 +198,12 @@ class ColumnKeys extends \TechDivision\Import\Utils\ColumnKeys
      *
      * @var string
      */
-    const ADDRESS_DEFAULT_BILLING = '_address_default_billing';
+    const ADDRESS_DEFAULT_BILLING = '_address_default_billing_';
 
     /**
      * Name for the column '_address_default_shipping'.
      *
      * @var string
      */
-    const ADDRESS_DEFAULT_SHIPPING = '_address_default_shipping';
+    const ADDRESS_DEFAULT_SHIPPING = '_address_default_shipping_';
 }
