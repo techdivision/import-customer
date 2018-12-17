@@ -157,16 +157,6 @@
             <argument type="service" id="import_customer.action.customer.varchar"/>
         </service>
 
-        <service id="import_customer.callback.boolean" class="TechDivision\Import\Customer\Callbacks\BooleanCallback"/>
-        <service id="import_customer.callback.tax.class" class="TechDivision\Import\Customer\Callbacks\TaxClassCallback"/>
-        <service id="import_customer.callback.visibility" class="TechDivision\Import\Customer\Callbacks\VisibilityCallback"/>
-        <service id="import_customer.callback.multiselect" class="TechDivision\Import\Customer\Callbacks\MultiselectCallback">
-            <argument type="service" id="import_customer.processor.customer.bunch"/>
-        </service>
-        <service id="import_customer.callback.select" class="TechDivision\Import\Customer\Callbacks\SelectCallback">
-            <argument type="service" id="import_customer.processor.customer.bunch"/>
-        </service>
-
         <service id="import_customer.observer.clean.up" class="TechDivision\Import\Customer\Observers\CleanUpObserver">
             <argument type="service" id="import_customer.processor.customer.bunch"/>
         </service>
