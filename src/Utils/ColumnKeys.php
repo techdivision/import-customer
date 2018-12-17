@@ -194,114 +194,16 @@ class ColumnKeys extends \TechDivision\Import\Utils\ColumnKeys
     const STORE = '_store';
 
     /**
-     * Name for the column '_address_city'.
+     * Name for the column 'default_billing'.
      *
      * @var string
      */
-    const ADDRESS_CITY = '_address_city';
+    const DEFAULT_BILLING = 'default_billing';
 
     /**
-     * Name for the column '_address_company'.
+     * Name for the column 'default_shipping'.
      *
      * @var string
      */
-    const ADDRESS_COMPANY = '_address_company';
-
-    /**
-     * Name for the column '_address_country_id'.
-     *
-     * @var string
-     */
-    const ADDRESS_COUNTRY_ID = '_address_country_id';
-
-    /**
-     * Name for the column '_address_fax'.
-     *
-     * @var string
-     */
-    const ADDRESS_FAX = '_address_fax';
-
-    /**
-     * Name for the column '_address_firstname'.
-     *
-     * @var string
-     */
-    const ADDRESS_FIRSTNAME = '_address_firstname';
-
-    /**
-     * Name for the column '_address_lastname'.
-     *
-     * @var string
-     */
-    const ADDRESS_LASTNAME = '_address_lastname';
-
-    /**
-     * Name for the column '_address_middlename'.
-     *
-     * @var string
-     */
-    const ADDRESS_MIDDLENAME = '_address_middlename';
-
-    /**
-     * Name for the column '_address_postcode'.
-     *
-     * @var string
-     */
-    const ADDRESS_POSTCODE = '_address_postcode';
-
-    /**
-     * Name for the column '_address_prefix'.
-     *
-     * @var string
-     */
-    const ADDRESS_PREFIX = '_address_prefix';
-
-    /**
-     * Name for the column '_address_region'.
-     *
-     * @var string
-     */
-    const ADDRESS_REGION = '_address_region';
-
-    /**
-     * Name for the column '_address_street'.
-     *
-     * @var string
-     */
-    const ADDRESS_STREET = '_address_street';
-
-    /**
-     * Name for the column '_address_suffix'.
-     *
-     * @var string
-     */
-    const ADDRESS_SUFFIX = '_address_suffix';
-
-    /**
-     * Name for the column '_address_telephone'.
-     *
-     * @var string
-     */
-    const ADDRESS_TELEPHONE = '_address_telephone';
-
-    /**
-     * Name for the column '_address_vat_id'.
-     *
-     * @var string
-     */
-    const ADDRESS_VAT_ID = '_address_vat_id';
-
-    /**
-     * Name for the column '_address_default_billing'.
-     *
-     * @var string
-     */
-    const ADDRESS_DEFAULT_BILLING = '_address_default_billing';
-
-    /**
-     * Name for the column '_address_default_shipping'.
-     *
-     * @var string
-     */
-    const ADDRESS_DEFAULT_SHIPPING = '_address_default_shipping';
+    const DEFAULT_SHIPPING = 'default_shipping';
 }

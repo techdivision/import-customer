@@ -20,11 +20,11 @@
 
 namespace TechDivision\Import\Customer\Observers;
 
-use TechDivision\Import\Customer\Services\CustomerBunchProcessorInterface;
 use TechDivision\Import\Customer\Utils\ColumnKeys;
+use TechDivision\Import\Customer\Services\CustomerBunchProcessorInterface;
 
 /**
- * Observer that pre-loads the entity ID of the customer with the SKU found in the CSV file.
+ * Observer that pre-loads the entity ID of the customer with the identifier found in the CSV file.
  *
  * @author    Tim Wagner <t.wagner@techdivision.com>
  * @copyright 2018 TechDivision GmbH <info@techdivision.com>
@@ -71,17 +71,21 @@ class PreLoadEntityIdObserver extends AbstractCustomerImportObserver
     protected function process()
     {
 
-        // query whether or not, we've found a new SKU => means we've found a new customer
-        if ($this->isLastSku($sku = $this->getValue(ColumnKeys::SKU))) {
+        // load email and website code
+        $email = $this->getValue(ColumnKeys::EMAIL);
+        $website = $this->getValue(ColumnKeys::WEBSITE);
+
+        // query whether or not, we've found a new identifier => means we've found a new customer
+        if ($this->isLastIdentifier(array($email, $website))) {
             return;
         }
 
-        // preserve the entity ID for the customer with the passed SKU
-        if ($customer = $this->loadCustomer($sku)) {
+        // preserve the entity ID for the customer with the passed identifier
+        if ($customer = $this->loadCustomerByEmailAndWebsiteId($email, $website)) {
             $this->preLoadEntityId($customer);
         } else {
             // initialize the error message
-            $message = sprintf('Can\'t pre-load customer with SKU %s', $sku);
+            $message = sprintf('Can\'t pre-load customer with email "%s" and website "%s"', $email, $website);
             // load the subject
             $subject = $this->getSubject();
             // query whether or not debug mode has been enabled
@@ -106,14 +110,15 @@ class PreLoadEntityIdObserver extends AbstractCustomerImportObserver
     }
 
     /**
-     * Load's and return's the customer with the passed SKU.
+     * Return's the customer with the passed email and website ID.
      *
-     * @param string $sku The SKU of the customer to load
+     * @param string $email     The email of the customer to return
+     * @param string $websiteId The website ID of the customer to return
      *
-     * @return array The customer
+     * @return array|null The customer
      */
-    protected function loadCustomer($sku)
+    protected function loadCustomerByEmailAndWebsiteId($email, $websiteId)
     {
-        return $this->getCustomerBunchProcessor()->loadCustomer($sku);
+        return $this->getCustomerBunchProcessor()->loadCustomerByEmailAndWebsiteId($email, $websiteId);
     }
 }

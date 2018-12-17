@@ -120,8 +120,8 @@ class CustomerObserver extends AbstractCustomerImportObserver
         $suffix = $this->getValue(ColumnKeys::SUFFIX);
         $passwordHash = $this->getValue(ColumnKeys::PASSWORD_HASH);
         $rpToken = $this->getValue(ColumnKeys::RP_TOKEN);
-        $defaultShipping = $this->getValue(ColumnKeys::ADDRESS_DEFAULT_SHIPPING);
-        $defaultBilling = $this->getValue(ColumnKeys::ADDRESS_DEFAULT_BILLING);
+        $defaultShipping = $this->getValue(ColumnKeys::DEFAULT_SHIPPING);
+        $defaultBilling = $this->getValue(ColumnKeys::DEFAULT_BILLING);
         $taxvat = $this->getValue(ColumnKeys::TAXVAT);
         $confirmation = $this->getValue(ColumnKeys::CONFIRMATION);
         $gender = $this->getGenderByValue($this->getValue(ColumnKeys::GENDER));

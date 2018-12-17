@@ -14,7 +14,7 @@
  * @author    Tim Wagner <t.wagner@techdivision.com>
  * @copyright 2018 TechDivision GmbH <info@techdivision.com>
  * @license   http://opensource.org/licenses/osl-3.0.php Open Software License (OSL 3.0)
- * @link      https://github.com/techdivision/import-product
+ * @link      https://github.com/techdivision/import-customer
  * @link      http://www.techdivision.com
  */
 
@@ -28,7 +28,7 @@ use TechDivision\Import\Customer\Utils\SqlStatementKeys;
  * @author    Tim Wagner <t.wagner@techdivision.com>
  * @copyright 2018 TechDivision GmbH <info@techdivision.com>
  * @license   http://opensource.org/licenses/osl-3.0.php Open Software License (OSL 3.0)
- * @link      https://github.com/techdivision/import-product
+ * @link      https://github.com/techdivision/import-customer
  * @link      http://www.techdivision.com
  */
 class SqlStatementRepository extends \TechDivision\Import\Repositories\SqlStatementRepository
@@ -74,7 +74,7 @@ class SqlStatementRepository extends \TechDivision\Import\Repositories\SqlStatem
               WHERE entity_id = :entity_id',
         SqlStatementKeys::CUSTOMER_VARCHAR_BY_ATTRIBUTE_CODE_AND_ENTITY_TYPE_ID_AND_VALUE =>
             'SELECT t1.*
-               FROM customer_entity_entity_varchar t1,
+               FROM customer_entity_varchar t1,
                     eav_attribute t2
               WHERE t2.attribute_code = :attribute_code
                 AND t2.entity_type_id = :entity_type_id
