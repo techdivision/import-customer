@@ -143,7 +143,7 @@ abstract class AbstractCustomerSubject extends AbstractEavSubject implements Ent
         list ($email, $website) = $identifier;
 
         // query whether or not the store view code has already been mapped to the customer identifier
-        return isset($this->customerIdentifierEntityIdMapping[$email][$website]) && isset($this->customerIdentifierEntityIdMapping[$email][$website]) && in_array($storeViewCode, $this->skuStoreViewCodeMapping[$email][$website]);
+        return isset($this->customerIdentifierEntityIdMapping[$email][$website]) && $this->customerIdentifierEntityIdMapping[$email][$website] === $storeViewCode;
     }
 
     /**
@@ -158,7 +158,6 @@ abstract class AbstractCustomerSubject extends AbstractEavSubject implements Ent
     {
         $this->customerIdentifierEntityIdMapping[$email][$website] = $this->getLastEntityId();
     }
-
 
     /**
      * Clean up the global data after importing the bunch.
