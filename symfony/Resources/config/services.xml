@@ -172,6 +172,9 @@
         <service id="import_customer.observer.last.entity.id" class="TechDivision\Import\Customer\Observers\LastEntityIdObserver">
             <argument type="service" id="import_customer.processor.customer.bunch"/>
         </service>
+        <service id="import_customer.observer.clear.customer" class="TechDivision\Import\Customer\Observers\ClearCustomerObserver">
+            <argument type="service" id="import_customer.processor.customer.bunch"/>
+        </service>
 
         <service id="import_customer.subject.bunch" class="TechDivision\Import\Customer\Subjects\BunchSubject" shared="false">
             <argument type="service" id="import.processor.registry"/>

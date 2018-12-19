@@ -21,8 +21,8 @@
 namespace TechDivision\Import\Customer\Observers;
 
 use TechDivision\Import\Customer\Utils\ColumnKeys;
-use TechDivision\Import\Customer\Services\CustomerBunchProcessorInterface;
 use TechDivision\Import\Customer\Utils\MemberNames;
+use TechDivision\Import\Customer\Services\CustomerBunchProcessorInterface;
 
 /**
  * Observer that removes the customer with the identifier found in the CSV file.
@@ -75,13 +75,18 @@ class ClearCustomerObserver extends AbstractCustomerImportObserver
         $email = $this->getValue(ColumnKeys::EMAIL);
         $website = $this->getValue(ColumnKeys::WEBSITE);
 
-        // query whether or not, we've found a new SKU => means we've found a new customer
-        if ($this->isLastIdentifier($identifier = array(MemberNames::EMAIL => $email, MemberNames::WEBSITE => $website))) {
+        // query whether or not, we've found a customer identifier => means we've found a new customer
+        if ($this->isLastIdentifier(array($email, $website))) {
             return;
         }
 
-        // delete the customer with the passed SKU
-        $this->deleteCustomer($identifier);
+        // delete the customer with the passed identifier
+        $this->deleteCustomer(
+            array(
+                MemberNames::EMAIL      => $email,
+                MemberNames::WEBSITE_ID => $this->getStoreWebsiteIdByCode($this->getValue(ColumnKeys::WEBSITE))
+            )
+        );
 
         // flush the cache to remove the deleted customer (which has previously been cached)
         $this->getCustomerBunchProcessor()->cleanUp();
@@ -98,5 +103,18 @@ class ClearCustomerObserver extends AbstractCustomerImportObserver
     protected function deleteCustomer($row, $name = null)
     {
         $this->getCustomerBunchProcessor()->deleteCustomer($row, $name);
+    }
+
+    /**
+     * Return's the store website for the passed code.
+     *
+     * @param string $code The code of the store website to return the ID for
+     *
+     * @return integer The store website ID
+     * @throws \Exception Is thrown, if the store website with the requested code is not available
+     */
+    protected function getStoreWebsiteIdByCode($code)
+    {
+        return $this->getSubject()->getStoreWebsiteIdByCode($code);
     }
 }
