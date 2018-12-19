@@ -68,6 +68,13 @@ abstract class AbstractCustomerSubject extends AbstractEavSubject implements Ent
     protected $customerIdentifierEntityIdMapping = array();
 
     /**
+     * The available store websites.
+     *
+     * @var array
+     */
+    protected $storeWebsites = array();
+
+    /**
      * Sets the customer identifier of the last imported customer.
      *
      * @param array $identifier The unique customer identifier
@@ -160,6 +167,26 @@ abstract class AbstractCustomerSubject extends AbstractEavSubject implements Ent
     }
 
     /**
+     * Intializes the previously loaded global data for exactly one bunch.
+     *
+     * @param string $serial The serial of the actual import
+     *
+     * @return void
+     */
+    public function setUp($serial)
+    {
+
+        // load the status of the actual import
+        $status = $this->getRegistryProcessor()->getAttribute($serial);
+
+        // load the global data we've prepared initially
+        $this->storeWebsites =  $status[RegistryKeys::GLOBAL_DATA][RegistryKeys::STORE_WEBSITES];
+
+        // invoke the parent method
+        parent::setUp($serial);
+    }
+
+    /**
      * Clean up the global data after importing the bunch.
      *
      * @param string $serial The serial of the actual import
@@ -227,5 +254,29 @@ abstract class AbstractCustomerSubject extends AbstractEavSubject implements Ent
     public function getCleanUpColumns()
     {
         return $this->getConfiguration()->getParam(ConfigurationKeys::CLEAN_UP_EMPTY_COLUMNS);
+    }
+
+    /**
+     * Return's the store website for the passed code.
+     *
+     * @param string $code The code of the store website to return the ID for
+     *
+     * @return integer The store website ID
+     * @throws \Exception Is thrown, if the store website with the requested code is not available
+     */
+    public function getStoreWebsiteIdByCode($code)
+    {
+
+        // query whether or not, the requested store website is available
+        if (isset($this->storeWebsites[$code])) {
+            return (integer) $this->storeWebsites[$code][MemberNames::WEBSITE_ID];
+        }
+
+        // throw an exception, if not
+        throw new \Exception(
+            $this->appendExceptionSuffix(
+                sprintf('Found invalid website code %s', $code)
+            )
+        );
     }
 }
