@@ -147,7 +147,7 @@ interface CustomerBunchProcessorInterface extends CustomerProcessorInterface, Ea
      * Persist's the passed customer data and return's the ID.
      *
      * @param array       $customer The customer data to persist
-     * @param string|null $name    The name of the prepared statement that has to be executed
+     * @param string|null $name     The name of the prepared statement that has to be executed
      *
      * @return string The ID of the persisted entity
      */

@@ -143,21 +143,16 @@ abstract class AbstractCustomerSubject extends AbstractEavSubject implements Ent
      *
      * @return boolean TRUE if the PK and store view code has been processed, else FALSE
      */
-    public function storeViewHasBeenProcessed(array $identifier, $storeViewCode)
+    public function storeViewHasBeenProcessed($pk, $storeViewCode)
     {
-
-        // explode the identifier (we need email + website code)
-        list ($email, $website) = $identifier;
-
-        // query whether or not the store view code has already been mapped to the customer identifier
-        return isset($this->customerIdentifierEntityIdMapping[$email][$website]) && $this->customerIdentifierEntityIdMapping[$email][$website] === $storeViewCode;
+        return false;
     }
 
     /**
      * Add the passed mail address/website code => entity ID mapping.
      *
-     * @param string $email       The mail address of the customer
-     * @param string $websiteCode The website code the customer is bound to
+     * @param string $email   The mail address of the customer
+     * @param string $website The website code the customer is bound to
      *
      * @return void
      */

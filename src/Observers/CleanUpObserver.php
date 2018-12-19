@@ -87,8 +87,8 @@ class CleanUpObserver extends AbstractCustomerImportObserver
     /**
      * Add the passed mail address/website code => entity ID mapping.
      *
-     * @param string $email       The mail address of the customer
-     * @param string $websiteCode The website code the customer is bound to
+     * @param string $email   The mail address of the customer
+     * @param string $website The website code the customer is bound to
      *
      * @return void
      */
