@@ -177,17 +177,14 @@ class SqlStatementRepository extends \TechDivision\Import\Repositories\SqlStatem
                INTO customer_entity_datetime
                     (entity_id,
                      attribute_id,
-                     store_id,
                      value)
             VALUES (:entity_id,
                     :attribute_id,
-                    :store_id,
                     :value)',
         SqlStatementKeys::UPDATE_CUSTOMER_DATETIME =>
             'UPDATE customer_entity_datetime
                 SET entity_id = :entity_id,
                     attribute_id = :attribute_id,
-                    store_id = :store_id,
                     value = :value
               WHERE value_id = :value_id',
         SqlStatementKeys::DELETE_CUSTOMER_DATETIME =>
@@ -199,17 +196,14 @@ class SqlStatementRepository extends \TechDivision\Import\Repositories\SqlStatem
                INTO customer_entity_decimal
                     (entity_id,
                      attribute_id,
-                     store_id,
                      value)
             VALUES (:entity_id,
                     :attribute_id,
-                    :store_id,
                     :value)',
         SqlStatementKeys::UPDATE_CUSTOMER_DECIMAL =>
             'UPDATE customer_entity_decimal
                 SET entity_id = :entity_id,
                     attribute_id = :attribute_id,
-                    store_id = :store_id,
                     value = :value
               WHERE value_id = :value_id',
         SqlStatementKeys::DELETE_CUSTOMER_DECIMAL =>
@@ -221,17 +215,14 @@ class SqlStatementRepository extends \TechDivision\Import\Repositories\SqlStatem
                INTO customer_entity_int
                     (entity_id,
                      attribute_id,
-                     store_id,
                      value)
              VALUES (:entity_id,
                      :attribute_id,
-                     :store_id,
                      :value)',
         SqlStatementKeys::UPDATE_CUSTOMER_INT =>
             'UPDATE customer_entity_int
                 SET entity_id = :entity_id,
                     attribute_id = :attribute_id,
-                    store_id = :store_id,
                     value = :value
               WHERE value_id = :value_id',
         SqlStatementKeys::DELETE_CUSTOMER_INT =>
@@ -243,17 +234,14 @@ class SqlStatementRepository extends \TechDivision\Import\Repositories\SqlStatem
                INTO customer_entity_varchar
                     (entity_id,
                      attribute_id,
-                     store_id,
                      value)
              VALUES (:entity_id,
                      :attribute_id,
-                     :store_id,
                      :value)',
         SqlStatementKeys::UPDATE_CUSTOMER_VARCHAR =>
             'UPDATE customer_entity_varchar
                 SET entity_id = :entity_id,
                     attribute_id = :attribute_id,
-                    store_id = :store_id,
                     value = :value
               WHERE value_id = :value_id',
         SqlStatementKeys::DELETE_CUSTOMER_VARCHAR =>
@@ -265,17 +253,14 @@ class SqlStatementRepository extends \TechDivision\Import\Repositories\SqlStatem
                INTO customer_entity_text
                     (entity_id,
                      attribute_id,
-                     store_id,
                      value)
              VALUES (:entity_id,
                      :attribute_id,
-                     :store_id,
                      :value)',
         SqlStatementKeys::UPDATE_CUSTOMER_TEXT =>
             'UPDATE customer_entity_text
                 SET entity_id = :entity_id,
                     attribute_id = :attribute_id,
-                    store_id = :store_id,
                     value = :value
               WHERE value_id = :value_id',
         SqlStatementKeys::DELETE_CUSTOMER_TEXT =>

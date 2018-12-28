@@ -99,6 +99,38 @@ class CustomerAttributeObserver extends AbstractAttributeObserver
     }
 
     /**
+     * Prepare the attributes of the entity that has to be persisted.
+     *
+     * @return array|null The prepared attributes
+     */
+    protected function prepareAttributes()
+    {
+
+        // laod the callbacks for the actual attribute code
+        $callbacks = $this->getCallbacksByType($this->attributeCode);
+
+        // invoke the pre-cast callbacks
+        foreach ($callbacks as $callback) {
+            $this->attributeValue = $callback->handle($this);
+        }
+
+        // load the ID of the product that has been created recently
+        $lastEntityId = $this->getPrimaryKey();
+
+        // cast the value based on the backend type
+        $castedValue = $this->castValueByBackendType($this->backendType, $this->attributeValue);
+
+        // prepare the attribute values
+        return $this->initializeEntity(
+            array(
+                $this->getPrimaryKeyMemberName() => $lastEntityId,
+                MemberNames::ATTRIBUTE_ID       => $this->attributeId,
+                MemberNames::VALUE              => $castedValue
+            )
+        );
+    }
+
+    /**
      * Return's the PK to create the customer => attribute relation.
      *
      * @return integer The PK to create the relation with
