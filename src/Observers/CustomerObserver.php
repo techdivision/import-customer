@@ -212,7 +212,7 @@ class CustomerObserver extends AbstractCustomerImportObserver
         // throw an exception, if not
         throw new \Exception(
             $this->appendExceptionSuffix(
-                sprintf('Found invalid tax class name %s', $value)
+                sprintf('Found invalid gender %s', $value)
             )
         );
     }
