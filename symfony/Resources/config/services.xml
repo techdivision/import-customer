@@ -149,6 +149,7 @@
             <argument type="service" id="import.repository.eav.attribute.option.value"/>
             <argument type="service" id="import.repository.eav.attribute"/>
             <argument type="service" id="import_customer.repository.customer"/>
+            <argument type="service" id="import.repository.eav.entity.type"/>
             <argument type="service" id="import_customer.action.customer"/>
             <argument type="service" id="import_customer.action.customer.datetime"/>
             <argument type="service" id="import_customer.action.customer.decimal"/>
