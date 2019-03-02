@@ -105,6 +105,13 @@ interface CustomerBunchProcessorInterface extends CustomerProcessorInterface, Ea
     public function getEavAttributeRepository();
 
     /**
+     * Return's the repository to access EAV entity types.
+     *
+     * @return \TechDivision\Import\Repositories\EavEntityTypeRepositoryInterface The repository instance
+     */
+    public function getEavEntityTypeRepository();
+
+    /**
      * Return's an array with the available EAV attributes for the passed is user defined flag.
      *
      * @param integer $isUserDefined The flag itself
