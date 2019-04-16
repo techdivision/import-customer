@@ -104,32 +104,32 @@
             <argument type="service" id="import_customer.repository.sql.statement"/>
         </service>
 
-        <service id="import_customer.action.customer" class="TechDivision\Import\Customer\Actions\CustomerAction">
+        <service id="import_customer.action.customer" class="TechDivision\Import\Actions\GenericIdentifierAction">
             <argument type="service" id="import_customer.action.processor.customer.create"/>
             <argument type="service" id="import_customer.action.processor.customer.update"/>
             <argument type="service" id="import_customer.action.processor.customer.delete"/>
         </service>
-        <service id="import_customer.action.customer.datetime" class="TechDivision\Import\Customer\Actions\CustomerDatetimeAction">
+        <service id="import_customer.action.customer.datetime" class="TechDivision\Import\Actions\GenericAction">
             <argument type="service" id="import_customer.action.processor.customer.datetime.create"/>
             <argument type="service" id="import_customer.action.processor.customer.datetime.update"/>
             <argument type="service" id="import_customer.action.processor.customer.datetime.delete"/>
         </service>
-        <service id="import_customer.action.customer.decimal" class="TechDivision\Import\Customer\Actions\CustomerDecimalAction">
+        <service id="import_customer.action.customer.decimal" class="TechDivision\Import\Actions\GenericAction">
             <argument type="service" id="import_customer.action.processor.customer.decimal.create"/>
             <argument type="service" id="import_customer.action.processor.customer.decimal.update"/>
             <argument type="service" id="import_customer.action.processor.customer.decimal.delete"/>
         </service>
-        <service id="import_customer.action.customer.int" class="TechDivision\Import\Customer\Actions\CustomerIntAction">
+        <service id="import_customer.action.customer.int" class="TechDivision\Import\Actions\GenericAction">
             <argument type="service" id="import_customer.action.processor.customer.int.create"/>
             <argument type="service" id="import_customer.action.processor.customer.int.update"/>
             <argument type="service" id="import_customer.action.processor.customer.int.delete"/>
         </service>
-        <service id="import_customer.action.customer.text" class="TechDivision\Import\Customer\Actions\CustomerTextAction">
+        <service id="import_customer.action.customer.text" class="TechDivision\Import\Actions\GenericAction">
             <argument type="service" id="import_customer.action.processor.customer.text.create"/>
             <argument type="service" id="import_customer.action.processor.customer.text.update"/>
             <argument type="service" id="import_customer.action.processor.customer.text.delete"/>
         </service>
-        <service id="import_customer.action.customer.varchar" class="TechDivision\Import\Customer\Actions\CustomerVarcharAction">
+        <service id="import_customer.action.customer.varchar" class="TechDivision\Import\Actions\GenericAction">
             <argument type="service" id="import_customer.action.processor.customer.varchar.create"/>
             <argument type="service" id="import_customer.action.processor.customer.varchar.update"/>
             <argument type="service" id="import_customer.action.processor.customer.varchar.delete"/>
@@ -175,6 +175,90 @@
         </service>
         <service id="import_customer.observer.clear.customer" class="TechDivision\Import\Customer\Observers\ClearCustomerObserver">
             <argument type="service" id="import_customer.processor.customer.bunch"/>
+        </service>
+
+        <!--
+         | The DI configuration for the composite observers of the customer replace operation.
+         |-->
+        <service id="import_customer.observer.composite.replace" class="TechDivision\Import\Observers\GenericCompositeObserver">
+            <call method="addObserver">
+                <argument id="import_customer.observer.pre.load.entity.id" type="service"/>
+            </call>
+            <call method="addObserver">
+                <argument id="import_customer.observer.clear.customer" type="service"/>
+            </call>
+            <call method="addObserver">
+                <argument id="import_customer.observer.customer" type="service"/>
+            </call>
+            <call method="addObserver">
+                <argument id="import_customer.observer.customer.attribute" type="service"/>
+            </call>
+            <call method="addObserver">
+                <argument id="import_customer_address.observer.export.customer.address" type="service"/>
+            </call>
+            <call method="addObserver">
+                <argument id="import_customer.observer.clean.up" type="service"/>
+            </call>
+        </service>
+
+        <!--
+         | The DI configuration for the composite observers of the customer address replace operation.
+         |-->
+        <service id="import_customer.observer.composite.address.replace" class="TechDivision\Import\Observers\GenericCompositeObserver">
+            <call method="addObserver">
+                <argument id="import_customer_address.observer.customer.address" type="service"/>
+            </call>
+            <call method="addObserver">
+                <argument id="import_customer_address.observer.customer.address.attribute" type="service"/>
+            </call>
+            <call method="addObserver">
+                <argument id="import_customer_address.observer.default.billing.address" type="service"/>
+            </call>
+            <call method="addObserver">
+                <argument id="import_customer_address.observer.default.shipping.address" type="service"/>
+            </call>
+            <call method="addObserver">
+                <argument id="import_customer_address.observer.clean.up" type="service"/>
+            </call>
+        </service>
+
+        <!--
+         | The DI configuration for the composite observers of the customer add-update operation.
+         |-->
+        <service id="import_customer.observer.composite.add_update" class="TechDivision\Import\Observers\GenericCompositeObserver">
+            <call method="addObserver">
+                <argument id="import_customer.observer.customer" type="service"/>
+            </call>
+            <call method="addObserver">
+                <argument id="import_customer.observer.customer.attribute.update" type="service"/>
+            </call>
+            <call method="addObserver">
+                <argument id="import_customer_address.observer.export.customer.address" type="service"/>
+            </call>
+            <call method="addObserver">
+                <argument id="import_customer.observer.clean.up" type="service"/>
+            </call>
+        </service>
+
+        <!--
+         | The DI configuration for the composite observers of the customer address add-update operation.
+         |-->
+        <service id="import_customer.observer.composite.address.add_update" class="TechDivision\Import\Observers\GenericCompositeObserver">
+            <call method="addObserver">
+                <argument id="import_customer_address.observer.customer.address" type="service"/>
+            </call>
+            <call method="addObserver">
+                <argument id="import_customer_address.observer.customer.address.attribute.update" type="service"/>
+            </call>
+            <call method="addObserver">
+                <argument id="import_customer_address.observer.default.billing.address" type="service"/>
+            </call>
+            <call method="addObserver">
+                <argument id="import_customer_address.observer.default.shipping.address" type="service"/>
+            </call>
+            <call method="addObserver">
+                <argument id="import_customer_address.observer.clean.up" type="service"/>
+            </call>
         </service>
 
         <service id="import_customer.subject.bunch" class="TechDivision\Import\Customer\Subjects\BunchSubject" shared="false">

@@ -44,42 +44,42 @@ interface CustomerBunchProcessorInterface extends CustomerProcessorInterface, Ea
     /**
      * Return's the action with the customer CRUD methods.
      *
-     * @return \TechDivision\Import\Customer\Actions\CustomerActionInterface The action instance
+     * @return \TechDivision\Import\Actions\ActionInterface The action instance
      */
     public function getCustomerAction();
 
     /**
      * Return's the action with the customer varchar attribute CRUD methods.
      *
-     * @return \TechDivision\Import\Customer\Actions\CustomerVarcharActionInterface The action instance
+     * @return \TechDivision\Import\Actions\ActionInterface The action instance
      */
     public function getCustomerVarcharAction();
 
     /**
      * Return's the action with the customer text attribute CRUD methods.
      *
-     * @return \TechDivision\Import\Customer\Actions\CustomerTextActionInterface The action instance
+     * @return \TechDivision\Import\Actions\ActionInterface The action instance
      */
     public function getCustomerTextAction();
 
     /**
      * Return's the action with the customer int attribute CRUD methods.
      *
-     * @return \TechDivision\Import\Customer\Actions\CustomerIntActionInterface The action instance
+     * @return \TechDivision\Import\Actions\ActionInterface The action instance
      */
     public function getCustomerIntAction();
 
     /**
      * Return's the action with the customer decimal attribute CRUD methods.
      *
-     * @return \TechDivision\Import\Customer\Actions\CustomerDecimalActionInterface The action instance
+     * @return \TechDivision\Import\Actions\ActionInterface The action instance
      */
     public function getCustomerDecimalAction();
 
     /**
      * Return's the action with the customer datetime attribute CRUD methods.
      *
-     * @return \TechDivision\Import\Customer\Actions\CustomerDatetimeActionInterface The action instance
+     * @return \TechDivision\Import\Actions\ActionInterface The action instance
      */
     public function getCustomerDatetimeAction();
 
