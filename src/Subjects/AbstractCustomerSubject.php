@@ -172,7 +172,7 @@ abstract class AbstractCustomerSubject extends AbstractEavSubject implements Ent
     {
 
         // load the status of the actual import
-        $status = $this->getRegistryProcessor()->getAttribute($serial);
+        $status = $this->getRegistryProcessor()->getAttribute(RegistryKeys::STATUS);
 
         // load the global data we've prepared initially
         $this->storeWebsites =  $status[RegistryKeys::GLOBAL_DATA][RegistryKeys::STORE_WEBSITES];
@@ -196,7 +196,7 @@ abstract class AbstractCustomerSubject extends AbstractEavSubject implements Ent
 
         // update the status
         $registryProcessor->mergeAttributesRecursive(
-            $serial,
+            RegistryKeys::STATUS,
             array(
                 RegistryKeys::CUSTOMER_IDENTIFIER_ENTITY_ID_MAPPING => $this->customerIdentifierEntityIdMapping,
             )
