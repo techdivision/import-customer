@@ -5,7 +5,9 @@
 
     <services>
 
-        <service id="import_customer.repository.sql.statement" class="TechDivision\Import\Customer\Repositories\SqlStatementRepository"/>
+        <service id="import_customer.repository.sql.statement" class="TechDivision\Import\Customer\Repositories\SqlStatementRepository">
+            <argument type="service" id="import.util.sql.compilers"/>
+        </service>
         <service id="import_customer.repository.customer" class="TechDivision\Import\Customer\Repositories\CustomerRepository">
             <argument type="service" id="connection"/>
             <argument type="service" id="import_customer.repository.sql.statement"/>
