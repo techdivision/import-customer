@@ -108,7 +108,6 @@ class CustomerObserver extends AbstractCustomerImportObserver
     {
 
         // initialize the customer values
-        $websiteId = $this->getValue(ColumnKeys::WEBSITE_ID);
         $email = $this->getValue(ColumnKeys::EMAIL);
         $groupId = $this->getValue(ColumnKeys::GROUP_ID);
         $storeId = $this->getValue(ColumnKeys::STORE_ID);
@@ -135,6 +134,7 @@ class CustomerObserver extends AbstractCustomerImportObserver
         $lockExpires = null;
 
         // prepare the date format for the created at/updated at dates
+        $websiteId = $this->getStoreWebsiteIdByCode($this->getValue(ColumnKeys::WEBSITE));
         $dob = $this->getValue(ColumnKeys::DOB, date('Y-m-d H:i:s'), array($this, 'formatDate'));
         $createdAt = $this->getValue(ColumnKeys::CREATED_AT, date('Y-m-d H:i:s'), array($this, 'formatDate'));
         $updatedAt = $this->getValue(ColumnKeys::UPDATED_AT, date('Y-m-d H:i:s'), array($this, 'formatDate'));
@@ -201,7 +201,7 @@ class CustomerObserver extends AbstractCustomerImportObserver
      * @return integer The gender ID
      * @throws \Exception Is thrown, if the gender ID with the requested value is not available
      */
-    public function getGenderByValue($value)
+    protected function getGenderByValue($value)
     {
 
         // query whether or not, the requested gender ID is available
@@ -215,6 +215,18 @@ class CustomerObserver extends AbstractCustomerImportObserver
                 sprintf('Found invalid gender %s', $value)
             )
         );
+    }
+
+    /**
+     * Return's the store website for the passed code.
+     *
+     * @param string $code The code of the store website to return the ID for
+     *
+     * @return integer The store website ID
+     */
+    protected function getStoreWebsiteIdByCode($code)
+    {
+        return $this->getSubject()->getStoreWebsiteIdByCode($code);
     }
 
     /**

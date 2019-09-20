@@ -2,7 +2,7 @@
 
 ## Bugfixes
 
-* None
+* Use website code instead of ID to relate customer with website
 
 ## Features
 
