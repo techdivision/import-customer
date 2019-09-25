@@ -1,7 +1,6 @@
 {
   "magento-edition": "CE",
   "magento-version": "2.3.0",
-  "operation-name" : "add-update",
   "archive-artefacts" : true,
   "debug-mode" : false,
   "entity-type-code" : "customer",
@@ -49,6 +48,23 @@
   ],
   "operations" : [
     {
+      "name" : "move-files",
+      "plugins" : [
+        {
+          "id": "import.plugin.subject",
+          "subjects" : [
+            {
+              "id": "import.subject.move.files",
+              "file-resolver": {
+                "id": "import.subject.file.resolver.move.files"
+              },
+              "ok-file-needed": true
+            }
+          ]
+        }
+      ]
+    },
+    {
       "name" : "delete",
       "plugins" : [
         {
@@ -57,13 +73,6 @@
         {
           "id": "import.plugin.subject",
           "subjects" : [
-            {
-              "id": "import.subject.move.files",
-              "file-resolver": {
-                "prefix": "customer-import"
-              },
-              "ok-file-needed": true
-            },
             {
               "id": "import_customer.subject.bunch",
               "file-resolver": {
@@ -96,13 +105,6 @@
         {
           "id": "import.plugin.subject",
           "subjects": [
-            {
-              "id": "import.subject.move.files",
-              "file-resolver": {
-                "prefix": "customer-import"
-              },
-              "ok-file-needed": true
-            },
             {
               "id": "import_customer.subject.bunch",
               "file-resolver": {
@@ -148,13 +150,6 @@
         {
           "id": "import.plugin.subject",
           "subjects": [
-            {
-              "id": "import.subject.move.files",
-              "file-resolver": {
-                "prefix": "customer-import"
-              },
-              "ok-file-needed": true
-            },
             {
               "id": "import_customer.subject.bunch",
               "file-resolver": {
