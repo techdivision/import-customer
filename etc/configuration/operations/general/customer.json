@@ -28,6 +28,54 @@
     "general": {
       "customer": [
         {
+          "name": "validate",
+          "plugins": [
+            {
+              "id": "import.plugin.subject",
+              "listeners": [
+                {
+                  "plugin.process.success": [
+                    "import.listener.stop.validation"
+                  ]
+                }
+              ],
+              "subjects": [
+                {
+                  "id": "import.subject.validator",
+                  "create-imported-file": false,
+                  "file-resolver": {
+                    "prefix": "customer-import"
+                  },
+                  "listeners": [
+                    {
+                      "subject.artefact.header.row.process.start": [
+                        "import.listener.validate.header.row"
+                      ]
+                    }
+                  ],
+                  "params" : {
+                    "custom-validations" : {
+                      "email" :  [ "/^[a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,4}$/" ]
+                    }
+                  },
+                  "observers": [
+                    {
+                      "import": [
+                        "import_product.observer.composite.base.validate"
+                      ]
+                    }
+                  ],
+                  "callbacks": [
+                    {
+                      "email": [ "import.callback.custom.regex.validator" ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
           "name": "delete",
           "plugins": [
             {
