@@ -1,41 +1,10 @@
 {
-  "shortcuts": {
-    "general": {
-      "customer": {
-        "validate": [
-          "general/general/global-data",
-          "general/general/move-files",
-          "general/customer/validate"
-        ],
-        "delete": [
-          "general/general/global-data",
-          "general/general/move-files",
-          "general/customer/delete"
-        ],
-        "replace": [
-          "general/general/global-data",
-          "general/general/move-files",
-          "general/general/cache-warmer",
-          "general/customer/replace",
-          "general/customer/replace.address"
-        ],
-        "add-update": [
-          "general/general/global-data",
-          "general/general/move-files",
-          "general/general/cache-warmer",
-          "general/customer/add-update",
-          "general/customer/add-update.address"
-        ]
-      }
-    }
-  },
   "operations": {
     "general": {
-      "customer": [
-        {
-          "name": "validate",
-          "plugins": [
-            {
+      "customer": {
+        "validate": {
+          "plugins": {
+            "subject": {
               "id": "import.plugin.subject",
               "listeners": [
                 {
@@ -78,12 +47,11 @@
                 }
               ]
             }
-          ]
+          }
         },
-        {
-          "name": "delete",
-          "plugins": [
-            {
+        "delete": {
+          "plugins": {
+            "subject": {
               "id": "import.plugin.subject",
               "subjects": [
                 {
@@ -101,12 +69,11 @@
                 }
               ]
             }
-          ]
+          }
         },
-        {
-          "name": "replace",
-          "plugins": [
-            {
+        "replace": {
+          "plugins": {
+            "subject": {
               "id": "import.plugin.subject",
               "subjects": [
                 {
@@ -124,12 +91,11 @@
                 }
               ]
             }
-          ]
+          }
         },
-        {
-          "name": "replace.address",
-          "plugins": [
-            {
+        "replace.address": {
+          "plugins": {
+            "subject": {
               "id": "import.plugin.subject",
               "subjects": [
                 {
@@ -147,12 +113,11 @@
                 }
               ]
             }
-          ]
+          }
         },
-        {
-          "name": "add-update",
-          "plugins": [
-            {
+        "add-update": {
+          "plugins": {
+            "subject": {
               "id": "import.plugin.subject",
               "subjects": [
                 {
@@ -170,12 +135,11 @@
                 }
               ]
             }
-          ]
+          }
         },
-        {
-          "name": "add-update.address",
-          "plugins": [
-            {
+        "add-update.address": {
+          "plugins": {
+            "subject": {
               "id": "import.plugin.subject",
               "subjects": [
                 {
@@ -193,9 +157,9 @@
                 }
               ]
             }
-          ]
+          }
         }
-      ]
+      }
     }
   }
 }

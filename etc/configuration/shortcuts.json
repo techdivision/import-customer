@@ -1,0 +1,32 @@
+{
+  "shortcuts": {
+    "general": {
+      "customer": {
+        "validate": [
+          "general/general/global-data",
+          "general/general/move-files",
+          "general/customer/validate"
+        ],
+        "delete": [
+          "general/general/global-data",
+          "general/general/move-files",
+          "general/customer/delete"
+        ],
+        "replace": [
+          "general/general/global-data",
+          "general/general/move-files",
+          "general/general/cache-warmer",
+          "general/customer/replace",
+          "general/customer/replace.address"
+        ],
+        "add-update": [
+          "general/general/global-data",
+          "general/general/move-files",
+          "general/general/cache-warmer",
+          "general/customer/add-update",
+          "general/customer/add-update.address"
+        ]
+      }
+    }
+  }
+}
