@@ -82,7 +82,7 @@ class LastEntityIdObserver extends AbstractCustomerImportObserver
         }
 
         // set the entity ID for the customer with the passed SKU
-        if ($customer = $this->loadCustomerByEmailAndWebsiteId($email, $website)) {
+        if ($customer = $this->loadCustomerByEmailAndWebsiteId($email, $this->getStoreWebsiteIdByCode($website))) {
             $this->setIds($customer);
         } else {
             // initialize the error message
@@ -136,5 +136,17 @@ class LastEntityIdObserver extends AbstractCustomerImportObserver
     protected function loadCustomerByEmailAndWebsiteId($email, $websiteId)
     {
         return $this->getCustomerBunchProcessor()->loadCustomerByEmailAndWebsiteId($email, $websiteId);
+    }
+
+    /**
+     * Return's the store website for the passed code.
+     *
+     * @param string $code The code of the store website to return the ID for
+     *
+     * @return integer The store website ID
+     */
+    protected function getStoreWebsiteIdByCode($code)
+    {
+        return $this->getSubject()->getStoreWebsiteIdByCode($code);
     }
 }

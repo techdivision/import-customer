@@ -1,3 +1,14 @@
+# Version 14.0.0
+
+## Bugfixes
+
+* Add missing method LastEntityIdObserver::getStoreWebsiteIdByCode()
+* Remove unnecessary PreLoadEntityIdObserver and replace with LastEntityIdObserver for replace operation
+
+## Features
+
+* None
+
 # Version 13.0.0
 
 ## Bugfixes

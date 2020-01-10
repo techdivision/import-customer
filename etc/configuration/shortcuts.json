@@ -15,14 +15,12 @@
         "replace": [
           "general/general/global-data",
           "general/general/move-files",
-          "general/general/cache-warmer",
           "general/customer/replace",
           "general/customer/replace.address"
         ],
         "add-update": [
           "general/general/global-data",
           "general/general/move-files",
-          "general/general/cache-warmer",
           "general/customer/add-update",
           "general/customer/add-update.address"
         ]
