@@ -20,6 +20,7 @@
 
 namespace TechDivision\Import\Customer\Services;
 
+use TechDivision\Import\Loaders\LoaderInterface;
 use TechDivision\Import\Actions\ActionInterface;
 use TechDivision\Import\Connection\ConnectionInterface;
 use TechDivision\Import\Repositories\EavAttributeRepositoryInterface;
@@ -125,6 +126,13 @@ class CustomerBunchProcessor implements CustomerBunchProcessorInterface
     protected $customerAttributeAssembler;
 
     /**
+     * The raw entity loader instance.
+     *
+     * @var \TechDivision\Import\Loaders\LoaderInterface
+     */
+    protected $rawEntityLoader;
+
+    /**
      * Initialize the processor with the necessary assembler and repository instances.
      *
      * @param \TechDivision\Import\Connection\ConnectionInterface                          $connection                        The connection to use
@@ -139,6 +147,7 @@ class CustomerBunchProcessor implements CustomerBunchProcessorInterface
      * @param \TechDivision\Import\Actions\ActionInterface                                 $customerIntAction                 The customer integer action to use
      * @param \TechDivision\Import\Actions\ActionInterface                                 $customerTextAction                The customer text action to use
      * @param \TechDivision\Import\Actions\ActionInterface                                 $customerVarcharAction             The customer varchar action to use
+     * @param \TechDivision\Import\Loaders\LoaderInterface                                 $rawEntityLoader                   The raw entity loader instance
      */
     public function __construct(
         ConnectionInterface $connection,
@@ -152,7 +161,8 @@ class CustomerBunchProcessor implements CustomerBunchProcessorInterface
         ActionInterface $customerDecimalAction,
         ActionInterface $customerIntAction,
         ActionInterface $customerTextAction,
-        ActionInterface $customerVarcharAction
+        ActionInterface $customerVarcharAction,
+        LoaderInterface $rawEntityLoader
     ) {
         $this->setConnection($connection);
         $this->setCustomerAttributeAssembler($customerAttributeAssembler);
@@ -165,6 +175,29 @@ class CustomerBunchProcessor implements CustomerBunchProcessorInterface
         $this->setCustomerIntAction($customerIntAction);
         $this->setCustomerTextAction($customerTextAction);
         $this->setCustomerVarcharAction($customerVarcharAction);
+        $this->setRawEntityLoader($rawEntityLoader);
+    }
+
+    /**
+     * Set's the raw entity loader instance.
+     *
+     * @param \TechDivision\Import\Loaders\LoaderInterface $rawEntityLoader The raw entity loader instance to set
+     *
+     * @return void
+     */
+    public function setRawEntityLoader(LoaderInterface $rawEntityLoader)
+    {
+        $this->rawEntityLoader = $rawEntityLoader;
+    }
+
+    /**
+     * Return's the raw entity loader instance.
+     *
+     * @return \TechDivision\Import\Loaders\LoaderInterface The raw entity loader instance
+     */
+    public function getRawEntityLoader()
+    {
+        return $this->rawEntityLoader;
     }
 
     /**
@@ -497,6 +530,19 @@ class CustomerBunchProcessor implements CustomerBunchProcessorInterface
     public function getCustomerAttributesByEntityId($entityId)
     {
         return $this->getCustomerAttributeAssembler()->getCustomerAttributesByEntityId($entityId);
+    }
+
+    /**
+     * Load's and return's a raw entity without primary key but the mandatory members only and nulled values.
+     *
+     * @param string $entityTypeCode The entity type code to return the raw entity for
+     * @param array  $data           An array with data that will be used to initialize the raw entity with
+     *
+     * @return array The initialized entity
+     */
+    public function loadRawEntity($entityTypeCode, array $data = array())
+    {
+        return $this->getRawEntityLoader()->load($entityTypeCode, $data);
     }
 
     /**

@@ -20,6 +20,8 @@
 
 namespace TechDivision\Import\Customer\Observers;
 
+use TechDivision\Import\Utils\EntityTypeCodes;
+use TechDivision\Import\Observers\StateDetectorInterface;
 use TechDivision\Import\Customer\Utils\GenderKeys;
 use TechDivision\Import\Customer\Utils\ColumnKeys;
 use TechDivision\Import\Customer\Utils\MemberNames;
@@ -56,13 +58,21 @@ class CustomerObserver extends AbstractCustomerImportObserver
     );
 
     /**
-     * Initialize the observer with the passed customer bunch processor instance.
+     * Initializes the observer with the state detector instance.
      *
      * @param \TechDivision\Import\Customer\Services\CustomerBunchProcessorInterface $customerBunchProcessor The customer bunch processor instance
+     * @param \TechDivision\Import\Observers\StateDetectorInterface                  $stateDetector          The state detector instance
      */
-    public function __construct(CustomerBunchProcessorInterface $customerBunchProcessor)
-    {
+    public function __construct(
+        CustomerBunchProcessorInterface $customerBunchProcessor,
+        StateDetectorInterface $stateDetector = null
+    ) {
+
+        // set the customer processor and the raw entity loader
         $this->customerBunchProcessor = $customerBunchProcessor;
+
+        // pass the state detector to the parent constructor
+        parent::__construct($stateDetector);
     }
 
     /**
@@ -142,36 +152,50 @@ class CustomerObserver extends AbstractCustomerImportObserver
 
         // return the prepared customer
         return $this->initializeEntity(
-            array(
-                MemberNames::WEBSITE_ID                => $websiteId,
-                MemberNames::EMAIL                     => $email,
-                MemberNames::GROUP_ID                  => $groupId,
-                MemberNames::INCREMENT_ID              => $incrementId,
-                MemberNames::STORE_ID                  => $storeId,
-                MemberNames::CREATED_AT                => $createdAt,
-                MemberNames::UPDATED_AT                => $updatedAt,
-                MemberNames::IS_ACTIVE                 => $isActive,
-                MemberNames::DISABLE_AUTO_GROUP_CHANGE => $disableAutoGroupChange,
-                MemberNames::CREATED_IN                => $createdIn,
-                MemberNames::PREFIX                    => $prefix,
-                MemberNames::FIRSTNAME                 => $firstname,
-                MemberNames::MIDDLENAME                => $middlename,
-                MemberNames::LASTNAME                  => $lastname,
-                MemberNames::SUFFIX                    => $suffix,
-                MemberNames::DOB                       => $dob,
-                MemberNames::PASSWORD_HASH             => $passwordHash,
-                MemberNames::RP_TOKEN                  => $rpToken,
-                MemberNames::RP_TOKEN_CREATED_AT       => $rpTokenCreatedAt,
-                MemberNames::DEFAULT_BILLING           => $defaultBilling,
-                MemberNames::DEFAULT_SHIPPING          => $defaultShipping,
-                MemberNames::TAXVAT                    => $taxvat,
-                MemberNames::CONFIRMATION              => $confirmation,
-                MemberNames::GENDER                    => $gender,
-                MemberNames::FAILURES_NUM              => $failuresNum,
-                MemberNames::FIRST_FAILURE             => $firstFailure,
-                MemberNames::LOCK_EXPIRES              => $lockExpires
+            $this->loadRawEntity(
+                array(
+                    MemberNames::WEBSITE_ID                => $websiteId,
+                    MemberNames::EMAIL                     => $email,
+                    MemberNames::GROUP_ID                  => $groupId,
+                    MemberNames::INCREMENT_ID              => $incrementId,
+                    MemberNames::STORE_ID                  => $storeId,
+                    MemberNames::CREATED_AT                => $createdAt,
+                    MemberNames::UPDATED_AT                => $updatedAt,
+                    MemberNames::IS_ACTIVE                 => $isActive,
+                    MemberNames::DISABLE_AUTO_GROUP_CHANGE => $disableAutoGroupChange,
+                    MemberNames::CREATED_IN                => $createdIn,
+                    MemberNames::PREFIX                    => $prefix,
+                    MemberNames::FIRSTNAME                 => $firstname,
+                    MemberNames::MIDDLENAME                => $middlename,
+                    MemberNames::LASTNAME                  => $lastname,
+                    MemberNames::SUFFIX                    => $suffix,
+                    MemberNames::DOB                       => $dob,
+                    MemberNames::PASSWORD_HASH             => $passwordHash,
+                    MemberNames::RP_TOKEN                  => $rpToken,
+                    MemberNames::RP_TOKEN_CREATED_AT       => $rpTokenCreatedAt,
+                    MemberNames::DEFAULT_BILLING           => $defaultBilling,
+                    MemberNames::DEFAULT_SHIPPING          => $defaultShipping,
+                    MemberNames::TAXVAT                    => $taxvat,
+                    MemberNames::CONFIRMATION              => $confirmation,
+                    MemberNames::GENDER                    => $gender,
+                    MemberNames::FAILURES_NUM              => $failuresNum,
+                    MemberNames::FIRST_FAILURE             => $firstFailure,
+                    MemberNames::LOCK_EXPIRES              => $lockExpires
+                )
             )
         );
+    }
+
+    /**
+     * Load's and return's a raw customer entity without primary key but the mandatory members only and nulled values.
+     *
+     * @param array $data An array with data that will be used to initialize the raw entity with
+     *
+     * @return array The initialized entity
+     */
+    protected function loadRawEntity(array $data = array())
+    {
+        return $this->getCustomerBunchProcessor()->loadRawEntity(EntityTypeCodes::CUSTOMER, $data);
     }
 
     /**

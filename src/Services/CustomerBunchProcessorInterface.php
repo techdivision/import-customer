@@ -35,6 +35,13 @@ interface CustomerBunchProcessorInterface extends CustomerProcessorInterface, Ea
 {
 
     /**
+     * Return's the raw entity loader instance.
+     *
+     * @return \TechDivision\Import\Loaders\LoaderInterface The raw entity loader instance
+     */
+    public function getRawEntityLoader();
+
+    /**
      * Return's the repository to load the customers with.
      *
      * @return \TechDivision\Import\Customer\Repositories\CustomerRepositoryInterface The repository instance
@@ -128,6 +135,16 @@ interface CustomerBunchProcessorInterface extends CustomerProcessorInterface, Ea
      * @return array The entity attributes
      */
     public function getCustomerAttributesByEntityId($entityId);
+
+    /**
+     * Load's and return's a raw entity without primary key but the mandatory members only and nulled values.
+     *
+     * @param string $entityTypeCode The entity type code to return the raw entity for
+     * @param array  $data           An array with data that will be used to initialize the raw entity with
+     *
+     * @return array The initialized entity
+     */
+    public function loadRawEntity($entityTypeCode, array $data = array());
 
     /**
      * Return's the customer with the passed email and website ID.

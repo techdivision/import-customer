@@ -1,3 +1,13 @@
+# Version 15.0.0
+
+## Bugfixes
+
+* None
+
+## Features
+
+* Add functionality for dynamic column handling in customer entity
+
 # Version 14.0.1
 
 ## Bugfixes
