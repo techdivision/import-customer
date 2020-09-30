@@ -233,6 +233,11 @@ class CustomerObserver extends AbstractCustomerImportObserver
             return (integer) $this->availableGenders[$value];
         }
 
+        // allow null values and empty strings
+        if ($value === null || $value === '') {
+            return null;
+        }
+
         // throw an exception, if not
         throw new \Exception(
             $this->appendExceptionSuffix(
