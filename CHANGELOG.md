@@ -1,3 +1,13 @@
+# Version 16.0.1
+
+## Bugfixes
+
+* PAC-239: Allow null values for for attribute 'gender' during customer import
+
+## Features
+
+* None
+
 # Version 16.0.0
 
 ## Bugfixes
