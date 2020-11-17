@@ -135,7 +135,23 @@ class CustomerObserver extends AbstractCustomerImportObserver
         $confirmation = $this->getValue(ColumnKeys::CONFIRMATION);
         $gender = $this->getGenderByValue($this->getValue(ColumnKeys::GENDER));
 
-        // load the customer's addtional attributes
+        // load the store id if a store code is present in the current row
+        if (($storeCode = $this->getValue(ColumnKeys::STORE))) {
+            $storeId = $this->getStoreIdByCode($storeCode);
+        }
+
+        // throw exception if neither the store id nor the store code are available
+        if ($storeId === null) {
+            throw new \Exception(
+                sprintf(
+                    'Expected value for either _store or store_id, none found in file %s on line %d',
+                    $this->getFilename(),
+                    $this->getLineNumber()
+                )
+            );
+        }
+
+        // load the customer's additional attributes
         $createdIn = $this->getValue(ColumnKeys::CREATED_IN);
         $incrementId = null;
         $isActive = 1;
@@ -244,6 +260,18 @@ class CustomerObserver extends AbstractCustomerImportObserver
                 sprintf('Found invalid gender %s', $value)
             )
         );
+    }
+
+    /**
+     * Returns the store id for the specified store code.
+     *
+     * @param string $code The store code
+     *
+     * @return integer The store id
+     */
+    protected function getStoreIdByCode($code)
+    {
+        return $this->getSubject()->getStoreId($code);
     }
 
     /**
