@@ -20,7 +20,7 @@
 
 namespace TechDivision\Import\Customer\Repositories;
 
-use TechDivision\Import\Repositories\RepositoryInterface;
+use TechDivision\Import\Dbal\Repositories\RepositoryInterface;
 
 /**
  * Interface for repositories providing functionality to load customer text attribute data.
