@@ -127,32 +127,32 @@
             <argument type="service" id="import_customer.repository.sql.statement"/>
         </service>
 
-        <service id="import_customer.action.customer" class="TechDivision\Import\Actions\GenericIdentifierAction">
+        <service id="import_customer.action.customer" class="TechDivision\Import\Dbal\Actions\GenericIdentifierAction">
             <argument type="service" id="import_customer.action.processor.customer.create"/>
             <argument type="service" id="import_customer.action.processor.customer.update"/>
             <argument type="service" id="import_customer.action.processor.customer.delete"/>
         </service>
-        <service id="import_customer.action.customer.datetime" class="TechDivision\Import\Actions\GenericAction">
+        <service id="import_customer.action.customer.datetime" class="TechDivision\Import\Dbal\Actions\GenericAction">
             <argument type="service" id="import_customer.action.processor.customer.datetime.create"/>
             <argument type="service" id="import_customer.action.processor.customer.datetime.update"/>
             <argument type="service" id="import_customer.action.processor.customer.datetime.delete"/>
         </service>
-        <service id="import_customer.action.customer.decimal" class="TechDivision\Import\Actions\GenericAction">
+        <service id="import_customer.action.customer.decimal" class="TechDivision\Import\Dbal\Actions\GenericAction">
             <argument type="service" id="import_customer.action.processor.customer.decimal.create"/>
             <argument type="service" id="import_customer.action.processor.customer.decimal.update"/>
             <argument type="service" id="import_customer.action.processor.customer.decimal.delete"/>
         </service>
-        <service id="import_customer.action.customer.int" class="TechDivision\Import\Actions\GenericAction">
+        <service id="import_customer.action.customer.int" class="TechDivision\Import\Dbal\Actions\GenericAction">
             <argument type="service" id="import_customer.action.processor.customer.int.create"/>
             <argument type="service" id="import_customer.action.processor.customer.int.update"/>
             <argument type="service" id="import_customer.action.processor.customer.int.delete"/>
         </service>
-        <service id="import_customer.action.customer.text" class="TechDivision\Import\Actions\GenericAction">
+        <service id="import_customer.action.customer.text" class="TechDivision\Import\Dbal\Actions\GenericAction">
             <argument type="service" id="import_customer.action.processor.customer.text.create"/>
             <argument type="service" id="import_customer.action.processor.customer.text.update"/>
             <argument type="service" id="import_customer.action.processor.customer.text.delete"/>
         </service>
-        <service id="import_customer.action.customer.varchar" class="TechDivision\Import\Actions\GenericAction">
+        <service id="import_customer.action.customer.varchar" class="TechDivision\Import\Dbal\Actions\GenericAction">
             <argument type="service" id="import_customer.action.processor.customer.varchar.create"/>
             <argument type="service" id="import_customer.action.processor.customer.varchar.update"/>
             <argument type="service" id="import_customer.action.processor.customer.varchar.delete"/>
