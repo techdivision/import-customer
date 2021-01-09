@@ -22,7 +22,7 @@ namespace TechDivision\Import\Customer\Repositories;
 
 use TechDivision\Import\Customer\Utils\ParamNames;
 use TechDivision\Import\Customer\Utils\SqlStatementKeys;
-use TechDivision\Import\Dbal\Repositories\AbstractRepository;
+use TechDivision\Import\Dbal\Collection\Repositories\AbstractRepository;
 
 /**
  * Repository implementation to load customer decimal attribute data.
