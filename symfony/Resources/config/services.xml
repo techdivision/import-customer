@@ -65,7 +65,7 @@
                 <argument type="constant">TechDivision\Import\Customer\Utils\SqlStatementKeys::CREATE_CUSTOMER</argument>
             </argument>
         </service>
-        <service id="import_customer.action.processor.customer.delete" class="TechDivision\Import\Dbal\Collection\Actions\Processors\GenericIdentifierProcessor">
+        <service id="import_customer.action.processor.customer.delete" class="TechDivision\Import\Dbal\Collection\Actions\Processors\GenericProcessor">
             <argument type="service" id="connection"/>
             <argument type="service" id="import_customer.repository.sql.statement"/>
             <argument type="service" id="import.util.sql.sanitizers"/>
@@ -73,7 +73,7 @@
                 <argument type="constant">TechDivision\Import\Customer\Utils\SqlStatementKeys::DELETE_CUSTOMER</argument>
             </argument>
         </service>
-        <service id="import_customer.action.processor.customer.update" class="TechDivision\Import\Dbal\Collection\Actions\Processors\GenericProcessor">
+        <service id="import_customer.action.processor.customer.update" class="TechDivision\Import\Dbal\Collection\Actions\Processors\GenericIdentifierProcessor">
             <argument type="service" id="connection"/>
             <argument type="service" id="import_customer.repository.sql.statement"/>
             <argument type="service" id="import.util.sql.sanitizers"/>
