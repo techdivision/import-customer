@@ -51,42 +51,42 @@ interface CustomerBunchProcessorInterface extends CustomerProcessorInterface, Ea
     /**
      * Return's the action with the customer CRUD methods.
      *
-     * @return \TechDivision\Import\Actions\ActionInterface The action instance
+     * @return \TechDivision\Import\Dbal\Actions\ActionInterface The action instance
      */
     public function getCustomerAction();
 
     /**
      * Return's the action with the customer varchar attribute CRUD methods.
      *
-     * @return \TechDivision\Import\Actions\ActionInterface The action instance
+     * @return \TechDivision\Import\Dbal\Actions\ActionInterface The action instance
      */
     public function getCustomerVarcharAction();
 
     /**
      * Return's the action with the customer text attribute CRUD methods.
      *
-     * @return \TechDivision\Import\Actions\ActionInterface The action instance
+     * @return \TechDivision\Import\Dbal\Actions\ActionInterface The action instance
      */
     public function getCustomerTextAction();
 
     /**
      * Return's the action with the customer int attribute CRUD methods.
      *
-     * @return \TechDivision\Import\Actions\ActionInterface The action instance
+     * @return \TechDivision\Import\Dbal\Actions\ActionInterface The action instance
      */
     public function getCustomerIntAction();
 
     /**
      * Return's the action with the customer decimal attribute CRUD methods.
      *
-     * @return \TechDivision\Import\Actions\ActionInterface The action instance
+     * @return \TechDivision\Import\Dbal\Actions\ActionInterface The action instance
      */
     public function getCustomerDecimalAction();
 
     /**
      * Return's the action with the customer datetime attribute CRUD methods.
      *
-     * @return \TechDivision\Import\Actions\ActionInterface The action instance
+     * @return \TechDivision\Import\Dbal\Actions\ActionInterface The action instance
      */
     public function getCustomerDatetimeAction();
 

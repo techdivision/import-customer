@@ -20,7 +20,7 @@
 
 namespace TechDivision\Import\Customer\Repositories;
 
-use TechDivision\Import\Repositories\RepositoryInterface;
+use TechDivision\Import\Dbal\Repositories\RepositoryInterface;
 
 /**
  * Interface for a repository implementation to load customer data.

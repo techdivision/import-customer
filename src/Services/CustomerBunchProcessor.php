@@ -21,8 +21,8 @@
 namespace TechDivision\Import\Customer\Services;
 
 use TechDivision\Import\Loaders\LoaderInterface;
-use TechDivision\Import\Actions\ActionInterface;
-use TechDivision\Import\Connection\ConnectionInterface;
+use TechDivision\Import\Dbal\Actions\ActionInterface;
+use TechDivision\Import\Dbal\Connection\ConnectionInterface;
 use TechDivision\Import\Repositories\EavAttributeRepositoryInterface;
 use TechDivision\Import\Repositories\EavEntityTypeRepositoryInterface;
 use TechDivision\Import\Repositories\EavAttributeOptionValueRepositoryInterface;
@@ -44,7 +44,7 @@ class CustomerBunchProcessor implements CustomerBunchProcessorInterface
     /**
      * A PDO connection initialized with the values from the Doctrine EntityManager.
      *
-     * @var \TechDivision\Import\Connection\ConnectionInterface
+     * @var \TechDivision\Import\Dbal\Connection\ConnectionInterface
      */
     protected $connection;
 
@@ -79,42 +79,42 @@ class CustomerBunchProcessor implements CustomerBunchProcessorInterface
     /**
      * The action for customer CRUD methods.
      *
-     * @var \TechDivision\Import\Actions\ActionInterface
+     * @var \TechDivision\Import\Dbal\Actions\ActionInterface
      */
     protected $customerAction;
 
     /**
      * The action for customer varchar attribute CRUD methods.
      *
-     * @var \TechDivision\Import\Actions\ActionInterface
+     * @var \TechDivision\Import\Dbal\Actions\ActionInterface
      */
     protected $customerVarcharAction;
 
     /**
      * The action for customer text attribute CRUD methods.
      *
-     * @var \TechDivision\Import\Actions\ActionInterface
+     * @var \TechDivision\Import\Dbal\Actions\ActionInterface
      */
     protected $customerTextAction;
 
     /**
      * The action for customer int attribute CRUD methods.
      *
-     * @var \TechDivision\Import\Actions\ActionInterface
+     * @var \TechDivision\Import\Dbal\Actions\ActionInterface
      */
     protected $customerIntAction;
 
     /**
      * The action for customer decimal attribute CRUD methods.
      *
-     * @var \TechDivision\Import\Actions\ActionInterface
+     * @var \TechDivision\Import\Dbal\Actions\ActionInterface
      */
     protected $customerDecimalAction;
 
     /**
      * The action for customer datetime attribute CRUD methods.
      *
-     * @var \TechDivision\Import\Actions\ActionInterface
+     * @var \TechDivision\Import\Dbal\Actions\ActionInterface
      */
     protected $customerDatetimeAction;
 
@@ -135,18 +135,18 @@ class CustomerBunchProcessor implements CustomerBunchProcessorInterface
     /**
      * Initialize the processor with the necessary assembler and repository instances.
      *
-     * @param \TechDivision\Import\Connection\ConnectionInterface                          $connection                        The connection to use
+     * @param \TechDivision\Import\Dbal\Connection\ConnectionInterface                     $connection                        The connection to use
      * @param \TechDivision\Import\Customer\Assemblers\CustomerAttributeAssemblerInterface $customerAttributeAssembler        The customer attribute assembler to use
      * @param \TechDivision\Import\Repositories\EavAttributeOptionValueRepositoryInterface $eavAttributeOptionValueRepository The EAV attribute option value repository to use
      * @param \TechDivision\Import\Repositories\EavAttributeRepositoryInterface            $eavAttributeRepository            The EAV attribute repository to use
      * @param \TechDivision\Import\Customer\Repositories\CustomerRepositoryInterface       $customerRepository                The customer repository to use
      * @param \TechDivision\Import\Repositories\EavEntityTypeRepositoryInterface           $eavEntityTypeRepository           The EAV entity type repository to use
-     * @param \TechDivision\Import\Actions\ActionInterface                                 $customerAction                    The customer action to use
-     * @param \TechDivision\Import\Actions\ActionInterface                                 $customerDatetimeAction            The customer datetime action to use
-     * @param \TechDivision\Import\Actions\ActionInterface                                 $customerDecimalAction             The customer decimal action to use
-     * @param \TechDivision\Import\Actions\ActionInterface                                 $customerIntAction                 The customer integer action to use
-     * @param \TechDivision\Import\Actions\ActionInterface                                 $customerTextAction                The customer text action to use
-     * @param \TechDivision\Import\Actions\ActionInterface                                 $customerVarcharAction             The customer varchar action to use
+     * @param \TechDivision\Import\Dbal\Actions\ActionInterface                            $customerAction                    The customer action to use
+     * @param \TechDivision\Import\Dbal\Actions\ActionInterface                            $customerDatetimeAction            The customer datetime action to use
+     * @param \TechDivision\Import\Dbal\Actions\ActionInterface                            $customerDecimalAction             The customer decimal action to use
+     * @param \TechDivision\Import\Dbal\Actions\ActionInterface                            $customerIntAction                 The customer integer action to use
+     * @param \TechDivision\Import\Dbal\Actions\ActionInterface                            $customerTextAction                The customer text action to use
+     * @param \TechDivision\Import\Dbal\Actions\ActionInterface                            $customerVarcharAction             The customer varchar action to use
      * @param \TechDivision\Import\Loaders\LoaderInterface                                 $rawEntityLoader                   The raw entity loader instance
      */
     public function __construct(
@@ -203,7 +203,7 @@ class CustomerBunchProcessor implements CustomerBunchProcessorInterface
     /**
      * Set's the passed connection.
      *
-     * @param \TechDivision\Import\Connection\ConnectionInterface $connection The connection to set
+     * @param \TechDivision\Import\Dbal\Connection\ConnectionInterface $connection The connection to set
      *
      * @return void
      */
@@ -215,7 +215,7 @@ class CustomerBunchProcessor implements CustomerBunchProcessorInterface
     /**
      * Return's the connection.
      *
-     * @return \TechDivision\Import\Connection\ConnectionInterface The connection instance
+     * @return \TechDivision\Import\Dbal\Connection\ConnectionInterface The connection instance
      */
     public function getConnection()
     {
@@ -291,7 +291,7 @@ class CustomerBunchProcessor implements CustomerBunchProcessorInterface
     /**
      * Set's the action with the customer CRUD methods.
      *
-     * @param \TechDivision\Import\Actions\ActionInterface $customerAction The action with the customer CRUD methods
+     * @param \TechDivision\Import\Dbal\Actions\ActionInterface $customerAction The action with the customer CRUD methods
      *
      * @return void
      */
@@ -303,7 +303,7 @@ class CustomerBunchProcessor implements CustomerBunchProcessorInterface
     /**
      * Return's the action with the customer CRUD methods.
      *
-     * @return \TechDivision\Import\Actions\ActionInterface The action instance
+     * @return \TechDivision\Import\Dbal\Actions\ActionInterface The action instance
      */
     public function getCustomerAction()
     {
@@ -313,7 +313,7 @@ class CustomerBunchProcessor implements CustomerBunchProcessorInterface
     /**
      * Set's the action with the customer varchar attribute CRUD methods.
      *
-     * @param \TechDivision\Import\Actions\ActionInterface $customerVarcharAction The action with the customer varchar attriute CRUD methods
+     * @param \TechDivision\Import\Dbal\Actions\ActionInterface $customerVarcharAction The action with the customer varchar attriute CRUD methods
      *
      * @return void
      */
@@ -325,7 +325,7 @@ class CustomerBunchProcessor implements CustomerBunchProcessorInterface
     /**
      * Return's the action with the customer varchar attribute CRUD methods.
      *
-     * @return \TechDivision\Import\Actions\ActionInterface The action instance
+     * @return \TechDivision\Import\Dbal\Actions\ActionInterface The action instance
      */
     public function getCustomerVarcharAction()
     {
@@ -335,7 +335,7 @@ class CustomerBunchProcessor implements CustomerBunchProcessorInterface
     /**
      * Set's the action with the customer text attribute CRUD methods.
      *
-     * @param \TechDivision\Import\Actions\ActionInterface $customerTextAction The action with the customer text attriute CRUD methods
+     * @param \TechDivision\Import\Dbal\Actions\ActionInterface $customerTextAction The action with the customer text attriute CRUD methods
      *
      * @return void
      */
@@ -347,7 +347,7 @@ class CustomerBunchProcessor implements CustomerBunchProcessorInterface
     /**
      * Return's the action with the customer text attribute CRUD methods.
      *
-     * @return \TechDivision\Import\Actions\ActionInterface The action instance
+     * @return \TechDivision\Import\Dbal\Actions\ActionInterface The action instance
      */
     public function getCustomerTextAction()
     {
@@ -357,7 +357,7 @@ class CustomerBunchProcessor implements CustomerBunchProcessorInterface
     /**
      * Set's the action with the customer int attribute CRUD methods.
      *
-     * @param \TechDivision\Import\Actions\ActionInterface $customerIntAction The action with the customer int attriute CRUD methods
+     * @param \TechDivision\Import\Dbal\Actions\ActionInterface $customerIntAction The action with the customer int attriute CRUD methods
      *
      * @return void
      */
@@ -369,7 +369,7 @@ class CustomerBunchProcessor implements CustomerBunchProcessorInterface
     /**
      * Return's the action with the customer int attribute CRUD methods.
      *
-     * @return \TechDivision\Import\Actions\ActionInterface The action instance
+     * @return \TechDivision\Import\Dbal\Actions\ActionInterface The action instance
      */
     public function getCustomerIntAction()
     {
@@ -379,7 +379,7 @@ class CustomerBunchProcessor implements CustomerBunchProcessorInterface
     /**
      * Set's the action with the customer decimal attribute CRUD methods.
      *
-     * @param \TechDivision\Import\Actions\ActionInterface $customerDecimalAction The action with the customer decimal attriute CRUD methods
+     * @param \TechDivision\Import\Dbal\Actions\ActionInterface $customerDecimalAction The action with the customer decimal attriute CRUD methods
      *
      * @return void
      */
@@ -391,7 +391,7 @@ class CustomerBunchProcessor implements CustomerBunchProcessorInterface
     /**
      * Return's the action with the customer decimal attribute CRUD methods.
      *
-     * @return \TechDivision\Import\Actions\ActionInterface The action instance
+     * @return \TechDivision\Import\Dbal\Actions\ActionInterface The action instance
      */
     public function getCustomerDecimalAction()
     {
@@ -401,7 +401,7 @@ class CustomerBunchProcessor implements CustomerBunchProcessorInterface
     /**
      * Set's the action with the customer datetime attribute CRUD methods.
      *
-     * @param \TechDivision\Import\Actions\ActionInterface $customerDatetimeAction The action with the customer datetime attriute CRUD methods
+     * @param \TechDivision\Import\Dbal\Actions\ActionInterface $customerDatetimeAction The action with the customer datetime attriute CRUD methods
      *
      * @return void
      */
@@ -413,7 +413,7 @@ class CustomerBunchProcessor implements CustomerBunchProcessorInterface
     /**
      * Return's the action with the customer datetime attribute CRUD methods.
      *
-     * @return \TechDivision\Import\Actions\ActionInterface The action instance
+     * @return \TechDivision\Import\Dbal\Actions\ActionInterface The action instance
      */
     public function getCustomerDatetimeAction()
     {
