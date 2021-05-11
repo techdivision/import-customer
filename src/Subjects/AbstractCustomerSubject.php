@@ -25,6 +25,7 @@ use TechDivision\Import\Subjects\AbstractEavSubject;
 use TechDivision\Import\Subjects\EntitySubjectInterface;
 use TechDivision\Import\Customer\Utils\ConfigurationKeys;
 use TechDivision\Import\Customer\Utils\RegistryKeys;
+use TechDivision\Import\Utils\FrontendInputTypes;
 
 /**
  * The abstract customer subject implementation that provides basic customer
@@ -40,7 +41,7 @@ abstract class AbstractCustomerSubject extends AbstractEavSubject implements Ent
 {
 
     /**
-     * The ID of the product that has been created recently.
+     * The ID of the customer that has been created recently.
      *
      * @var string
      */
@@ -74,6 +75,18 @@ abstract class AbstractCustomerSubject extends AbstractEavSubject implements Ent
      */
     protected $storeWebsites = array();
 
+
+    /**
+     * The default mappings for the user defined attributes, based on the attributes frontend input type.
+     *
+     * @var array
+     */
+    protected $defaultFrontendInputCallbackMappings = array(
+        FrontendInputTypes::SELECT      => array('import_customer.callback.select'),
+        FrontendInputTypes::MULTISELECT => array('import_customer.callback.multiselect'),
+        FrontendInputTypes::BOOLEAN     => array('import_customer.callback.boolean')
+    );
+
     /**
      * Sets the customer identifier of the last imported customer.
      *
@@ -87,7 +100,7 @@ abstract class AbstractCustomerSubject extends AbstractEavSubject implements Ent
     }
 
     /**
-     * Return's the SKU of the last imported product.
+     * Return's the SKU of the last imported customer.
      *
      * @return string|null The SKU
      */
@@ -97,7 +110,7 @@ abstract class AbstractCustomerSubject extends AbstractEavSubject implements Ent
     }
 
     /**
-     * Set's the ID of the product that has been created recently.
+     * Set's the ID of the customer that has been created recently.
      *
      * @param string $lastEntityId The entity ID
      *
@@ -109,7 +122,7 @@ abstract class AbstractCustomerSubject extends AbstractEavSubject implements Ent
     }
 
     /**
-     * Return's the ID of the product that has been created recently.
+     * Return's the ID of the customer that has been created recently.
      *
      * @return string The entity Id
      */
@@ -224,7 +237,7 @@ abstract class AbstractCustomerSubject extends AbstractEavSubject implements Ent
             $default = $defaultStore[MemberNames::CODE];
         }
 
-        // load the store view code to create the product/attributes for
+        // load the store view code to create the customer/attributes for
         $storeViewCode = $this->getStoreViewCode($default);
 
         // query whether or not, the requested store is available

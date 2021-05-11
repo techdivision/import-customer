@@ -1,3 +1,13 @@
+# Version 17.0.0
+
+## Bugfixes
+
+* PAC-386: Import customer attributes
+
+## Features
+
+* None
+
 # Version 16.0.1
 
 ## Bugfixes

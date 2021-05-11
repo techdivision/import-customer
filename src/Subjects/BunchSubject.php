@@ -23,6 +23,7 @@ namespace TechDivision\Import\Customer\Subjects;
 use TechDivision\Import\Subjects\ExportableTrait;
 use TechDivision\Import\Subjects\ExportableSubjectInterface;
 use TechDivision\Import\Customer\Utils\RegistryKeys;
+use TechDivision\Import\Utils\EntityTypeCodes;
 
 /**
  * The subject implementation that handles the business logic to persist customers.
@@ -49,6 +50,15 @@ class BunchSubject extends AbstractCustomerSubject implements ExportableSubjectI
      * @var array
      */
     protected $preLoadedEntityIds = array();
+
+    /**
+     * Mapping for the virtual entity type code to the real Magento 2 EAV entity type code.
+     *
+     * @var array
+     */
+    protected $entityTypeCodeMappings = array(
+        EntityTypeCodes::CUSTOMER                 => EntityTypeCodes::CUSTOMER,
+    );
 
     /**
      * Clean up the global data after importing the bunch.

@@ -312,7 +312,7 @@ class CustomerObserver extends AbstractCustomerImportObserver
     }
 
     /**
-     * Return's the attribute set of the product that has to be created.
+     * Return's the attribute set of the customer that has to be created.
      *
      * @return array The attribute set
      */
