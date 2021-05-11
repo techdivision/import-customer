@@ -1,7 +1,7 @@
 <?php
 
 /**
- * TechDivision\Import\Customer\Actions\Processors\ProductDeleteProcessor
+ * TechDivision\Import\Customer\Actions\Processors\CustomerDeleteProcessor
  *
  * NOTICE OF LICENSE
  *

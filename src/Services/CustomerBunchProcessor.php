@@ -169,6 +169,7 @@ class CustomerBunchProcessor implements CustomerBunchProcessorInterface
         $this->setEavAttributeOptionValueRepository($eavAttributeOptionValueRepository);
         $this->setEavAttributeRepository($eavAttributeRepository);
         $this->setCustomerRepository($customerRepository);
+        $this->setEavEntityTypeRepository($eavEntityTypeRepository);
         $this->setCustomerAction($customerAction);
         $this->setCustomerDatetimeAction($customerDatetimeAction);
         $this->setCustomerDecimalAction($customerDecimalAction);
@@ -483,7 +484,7 @@ class CustomerBunchProcessor implements CustomerBunchProcessorInterface
      */
     public function getEavEntityTypeRepository()
     {
-        return $this->eavAttributeRepository;
+        return $this->eavEntityTypeRepository;
     }
 
     /**

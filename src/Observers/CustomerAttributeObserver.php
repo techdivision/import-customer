@@ -114,7 +114,7 @@ class CustomerAttributeObserver extends AbstractAttributeObserver
             $this->attributeValue = $callback->handle($this);
         }
 
-        // load the ID of the product that has been created recently
+        // load the ID of the customer that has been created recently
         $lastEntityId = $this->getPrimaryKey();
 
         // cast the value based on the backend type

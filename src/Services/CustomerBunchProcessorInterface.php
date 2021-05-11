@@ -1,7 +1,7 @@
 <?php
 
 /**
- * TechDivision\Import\Product\Services\ProductBunchProcessorInterface
+ * TechDivision\Import\Customer\Services\CustomerBunchProcessorInterface
  *
  * NOTICE OF LICENSE
  *

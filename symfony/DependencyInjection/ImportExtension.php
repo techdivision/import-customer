@@ -26,7 +26,7 @@ use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Loader\XmlFileLoader;
 
 /**
- * The symfony extension implementation for the M2IF import product library.
+ * The symfony extension implementation for the M2IF import customer library.
  *
  * @author    Tim Wagner <t.wagner@techdivision.com>
  * @copyright 2018 TechDivision GmbH <info@techdivision.com>

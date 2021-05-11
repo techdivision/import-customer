@@ -35,7 +35,7 @@
                   "observers": [
                     {
                       "import": [
-                        "import_product.observer.composite.base.validate"
+                        "import_customer.observer.composite.base.validate"
                       ]
                     }
                   ],
@@ -129,6 +129,92 @@
                     {
                       "import": [
                         "import_customer.observer.composite.add_update"
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          }
+        },
+        "convert": {
+          "plugins": {
+            "converter": {
+              "id": "import_converter.plugin.exportable.converter.generic",
+              "params": {
+                "exportable-artefact-types": [
+                  "option-import"
+                ]
+              },
+              "listeners": [
+                {
+                  "plugin.export.start": [
+                    "import_converter_customer_attribute.listeners.reduce.attribute.option.value"
+                  ]
+                }
+              ],
+              "subjects": [
+                {
+                  "id": "import_converter_customer_attribute.subject.converter",
+                  "create-imported-file": false,
+                  "file-resolver": {
+                    "prefix": "customer-import"
+                  },
+                  "observers": [
+                    {
+                      "import": [
+                        "import.observer.additional.attribute",
+                        "import_converter_customer_attribute.observer.customer.to.attribute.option.value"
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          }
+        },
+        "add-update.options": {
+          "plugins": {
+            "subject": {
+              "id": "import.plugin.subject",
+              "subjects": [
+                {
+                  "id": "import_attribute.subject.option",
+                  "file-resolver": {
+                    "prefix": "option-import"
+                  },
+                  "params": {
+                    "copy-images": false,
+                    "media-directory" : "pub/media/attribute/swatch",
+                    "images-file-directory" : "var/importexport/media/attribute/swatch",
+                    "clean-up-empty-columns": []
+                  },
+                  "observers": [
+                    {
+                      "import": [
+                        "import_attribute.observer.composite.option.add_update"
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          }
+        },
+        "add-update.option-values": {
+          "plugins": {
+            "subject": {
+              "id": "import.plugin.subject",
+              "subjects": [
+                {
+                  "id": "import_attribute.subject.option",
+                  "file-resolver": {
+                    "prefix": "option-value-import"
+                  },
+                  "observers": [
+                    {
+                      "import": [
+                        "import_attribute.observer.composite.option.value.add_update"
                       ]
                     }
                   ]

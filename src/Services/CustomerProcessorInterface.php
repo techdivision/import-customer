@@ -41,8 +41,8 @@ interface CustomerProcessorInterface
 
     /**
      * Turns off autocommit mode. While autocommit mode is turned off, changes made to the database via the PDO
-     * object instance are not committed until you end the transaction by calling ProductProcessor::commit().
-     * Calling ProductProcessor::rollBack() will roll back all changes to the database and return the connection
+     * object instance are not committed until you end the transaction by calling CustomerProcessor::commit().
+     * Calling CustomerProcessor::rollBack() will roll back all changes to the database and return the connection
      * to autocommit mode.
      *
      * @return boolean Returns TRUE on success or FALSE on failure
@@ -52,7 +52,7 @@ interface CustomerProcessorInterface
 
     /**
      * Commits a transaction, returning the database connection to autocommit mode until the next call to
-     * ProductProcessor::beginTransaction() starts a new transaction.
+     * CustomerProcessor::beginTransaction() starts a new transaction.
      *
      * @return boolean Returns TRUE on success or FALSE on failure
      * @link http://php.net/manual/en/pdo.commit.php
@@ -60,7 +60,7 @@ interface CustomerProcessorInterface
     public function commit();
 
     /**
-     * Rolls back the current transaction, as initiated by ProductProcessor::beginTransaction().
+     * Rolls back the current transaction, as initiated by CustomerProcessor::beginTransaction().
      *
      * If the database was set to autocommit mode, this function will restore autocommit mode after it has
      * rolled back the transaction.

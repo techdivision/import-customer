@@ -23,7 +23,7 @@ namespace TechDivision\Import\Customer;
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
 /**
- * The symfony bundle implementation for the M2IF import product library.
+ * The symfony bundle implementation for the M2IF import customer library.
  *
  * @author    Tim Wagner <t.wagner@techdivision.com>
  * @copyright 2018 TechDivision GmbH <info@techdivision.com>
