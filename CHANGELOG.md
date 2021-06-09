@@ -1,3 +1,14 @@
+# Version 16.0.3
+
+## Bugfixes
+
+* PAC-276: Backport - Optionally retrieve store_id via store_code (_store)
+  * https://github.com/techdivision/import-customer/pull/15/files
+
+## Features
+
+* None
+
 # Version 16.0.2
 
 ## Bugfixes
