@@ -95,7 +95,7 @@ class LastEntityIdObserver extends AbstractCustomerImportObserver
                 $subject->getSystemLogger()->warning($subject->appendExceptionSuffix($message));
                 // skip processing the actual row
                 $subject->skipRow();
-            } else {
+            } elseif($subject->isStrictMode()) {
                 throw new \Exception($message);
             }
         }
