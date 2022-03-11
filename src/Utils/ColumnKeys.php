@@ -200,4 +200,18 @@ class ColumnKeys extends \TechDivision\Import\Utils\ColumnKeys
      * @var string
      */
     const ADDRESS_DEFAULT_SHIPPING = '_address_default_shipping_';
+
+    /**
+     * Name for the member 'session_cutoff'.
+     *
+     * @var string
+     */
+    const SESSION_CUSTOFF = 'session_cutoff';
+
+    /**
+     * Name for the member 'increment_id'.
+     *
+     * @var string
+     */
+    const INCREMENT_ID = 'increment_id';
 }
