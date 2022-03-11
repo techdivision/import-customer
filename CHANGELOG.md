@@ -1,3 +1,9 @@
+# Version 16.0.4
+
+## Bugfixes
+
+* Extend Customer Observer with the new Field session_cutoff
+
 # Version 16.0.3
 
 ## Bugfixes
