@@ -220,4 +220,11 @@ class MemberNames extends \TechDivision\Import\Utils\MemberNames
      * @var string
      */
     const LOCK_EXPIRES = 'lock_expires';
+    
+    /**
+     * Name for the member 'session_cutoff'.
+     *
+     * @var string
+     */
+    const SESSION_CUSTOFF = 'session_cutoff';
 }

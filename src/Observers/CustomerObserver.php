@@ -153,7 +153,6 @@ class CustomerObserver extends AbstractCustomerImportObserver
 
         // load the customer's additional attributes
         $createdIn = $this->getValue(ColumnKeys::CREATED_IN);
-        $incrementId = null;
         $isActive = 1;
         $failuresNum = 0;
         $firstFailure = null;
@@ -161,10 +160,12 @@ class CustomerObserver extends AbstractCustomerImportObserver
 
         // prepare the date format for the created at/updated at dates
         $websiteId = $this->getStoreWebsiteIdByCode($this->getValue(ColumnKeys::WEBSITE));
-        $dob = $this->getValue(ColumnKeys::DOB, date('Y-m-d H:i:s'), array($this, 'formatDate'));
+        $incrementId = $this->getValue(ColumnKeys::INCREMENT_ID);
+        $dob = $this->getValue(ColumnKeys::DOB, null, array($this, 'formatDate'));
         $createdAt = $this->getValue(ColumnKeys::CREATED_AT, date('Y-m-d H:i:s'), array($this, 'formatDate'));
         $updatedAt = $this->getValue(ColumnKeys::UPDATED_AT, date('Y-m-d H:i:s'), array($this, 'formatDate'));
-        $rpTokenCreatedAt = $this->getValue(ColumnKeys::RP_TOKEN_CREATED_AT, date('Y-m-d H:i:s'), array($this, 'formatDate'));
+        $rpTokenCreatedAt = $this->getValue(ColumnKeys::RP_TOKEN_CREATED_AT, null, array($this, 'formatDate'));
+        $sessionCutoff = $this->getValue(ColumnKeys::SESSION_CUSTOFF, null, array($this, 'formatDate'));
 
         // return the prepared customer
         return $this->initializeEntity(
@@ -196,7 +197,8 @@ class CustomerObserver extends AbstractCustomerImportObserver
                     MemberNames::GENDER                    => $gender,
                     MemberNames::FAILURES_NUM              => $failuresNum,
                     MemberNames::FIRST_FAILURE             => $firstFailure,
-                    MemberNames::LOCK_EXPIRES              => $lockExpires
+                    MemberNames::LOCK_EXPIRES              => $lockExpires,
+                    MemberNames::SESSION_CUSTOFF           => $sessionCutoff
                 )
             )
         );
