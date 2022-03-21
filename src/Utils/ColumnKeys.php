@@ -206,7 +206,7 @@ class ColumnKeys extends \TechDivision\Import\Utils\ColumnKeys
      *
      * @var string
      */
-    const SESSION_CUSTOFF = 'session_cutoff';
+    const SESSION_CUTOFF = 'session_cutoff';
 
     /**
      * Name for the member 'increment_id'.

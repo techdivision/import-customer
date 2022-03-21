@@ -220,5 +220,5 @@ class MemberNames extends \TechDivision\Import\Utils\MemberNames
      *
      * @var string
      */
-    const SESSION_CUSTOFF = 'session_cutoff';
+    const SESSION_CUTOFF = 'session_cutoff';
 }

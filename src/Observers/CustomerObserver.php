@@ -159,7 +159,7 @@ class CustomerObserver extends AbstractCustomerImportObserver
         $createdAt = $this->getValue(ColumnKeys::CREATED_AT, date('Y-m-d H:i:s'), array($this, 'formatDate'));
         $updatedAt = $this->getValue(ColumnKeys::UPDATED_AT, date('Y-m-d H:i:s'), array($this, 'formatDate'));
         $rpTokenCreatedAt = $this->getValue(ColumnKeys::RP_TOKEN_CREATED_AT, null, array($this, 'formatDate'));
-        $sessionCutoff = $this->getValue(ColumnKeys::SESSION_CUSTOFF, null, array($this, 'formatDate'));
+        $sessionCutoff = $this->getValue(ColumnKeys::SESSION_CUTOFF, null, array($this, 'formatDate'));
 
         // return the prepared customer
         return $this->initializeEntity(
@@ -192,7 +192,7 @@ class CustomerObserver extends AbstractCustomerImportObserver
                     MemberNames::FAILURES_NUM              => $failuresNum,
                     MemberNames::FIRST_FAILURE             => $firstFailure,
                     MemberNames::LOCK_EXPIRES              => $lockExpires,
-                    MemberNames::SESSION_CUSTOFF           => $sessionCutoff
+                    MemberNames::SESSION_CUTOFF           => $sessionCutoff
                 )
             )
         );
