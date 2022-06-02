@@ -1,0 +1,11 @@
+{
+  "black-listing": {
+    "customer_entity": {
+      "general": [
+        "session_cutoff",
+        "rp_token_created_at",
+        "rp_token"
+      ]
+    }
+  }
+}
