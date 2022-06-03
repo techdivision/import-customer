@@ -1,3 +1,13 @@
+# Version 17.0.1
+
+## Bugfixes
+
+* none
+
+## Features
+
+* Implement black-list.json for customer_entity
+
 # Version 17.0.0
 
 ## Bugfixes
