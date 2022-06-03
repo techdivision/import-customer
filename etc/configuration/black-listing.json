@@ -5,6 +5,10 @@
         "session_cutoff",
         "rp_token_created_at",
         "rp_token"
+      ],
+      "insert": [
+      ],
+      "update": [
       ]
     }
   }
