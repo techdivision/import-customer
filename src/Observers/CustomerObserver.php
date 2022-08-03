@@ -155,7 +155,7 @@ class CustomerObserver extends AbstractCustomerImportObserver
         // prepare the date format for the created at/updated at dates
         $websiteId = $this->getStoreWebsiteIdByCode($this->getValue(ColumnKeys::WEBSITE));
         $incrementId = $this->getValue(ColumnKeys::INCREMENT_ID);
-        $dob = $this->getValue(ColumnKeys::DOB, 'Y-m-d H:i:s', array($this, 'formatDobDate'));
+        $dob = $this->getValue(ColumnKeys::DOB, null, array($this, 'formatDobDate'));
         $createdAt = $this->getValue(ColumnKeys::CREATED_AT, date('Y-m-d H:i:s'), array($this, 'formatDate'));
         $updatedAt = $this->getValue(ColumnKeys::UPDATED_AT, date('Y-m-d H:i:s'), array($this, 'formatDate'));
         $rpTokenCreatedAt = $this->getValue(ColumnKeys::RP_TOKEN_CREATED_AT, null, array($this, 'formatDate'));
