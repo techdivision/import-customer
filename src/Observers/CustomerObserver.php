@@ -330,8 +330,7 @@ class CustomerObserver extends AbstractCustomerImportObserver
     }
 
     /**
-     * @param string $value  DOB value
-     * @param string $format Date Format
+     * @param string $value DOB value
      *
      * @return null|string
      */
