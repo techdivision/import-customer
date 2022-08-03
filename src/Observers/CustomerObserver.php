@@ -335,11 +335,12 @@ class CustomerObserver extends AbstractCustomerImportObserver
      *
      * @return null|string
      */
-    protected function formatDobDate($value, $format)
+    protected function formatDobDate($value)
     {
         // try to format the date according to the configured date format
         $formattedDate = $this->getSubject()->getDateConverter()->convert($value);
 
+        $format = 'Y-m-d H:i:s';
         $dateTime = \DateTime::createFromFormat($format, $formattedDate);
 
         if (!$dateTime) {
