@@ -155,7 +155,7 @@ class CustomerObserver extends AbstractCustomerImportObserver
         // prepare the date format for the created at/updated at dates
         $websiteId = $this->getStoreWebsiteIdByCode($this->getValue(ColumnKeys::WEBSITE));
         $incrementId = $this->getValue(ColumnKeys::INCREMENT_ID);
-        $dob = $this->getValue(ColumnKeys::DOB, null, array($this, 'formatDate'));
+        $dob = $this->getValue(ColumnKeys::DOB, null, array($this, 'formatDobDate'));
         $createdAt = $this->getValue(ColumnKeys::CREATED_AT, date('Y-m-d H:i:s'), array($this, 'formatDate'));
         $updatedAt = $this->getValue(ColumnKeys::UPDATED_AT, date('Y-m-d H:i:s'), array($this, 'formatDate'));
         $rpTokenCreatedAt = $this->getValue(ColumnKeys::RP_TOKEN_CREATED_AT, null, array($this, 'formatDate'));
@@ -327,5 +327,26 @@ class CustomerObserver extends AbstractCustomerImportObserver
     protected function setLastEntityId($lastEntityId)
     {
         $this->getSubject()->setLastEntityId($lastEntityId);
+    }
+
+    /**
+     * @param string $value DOB value
+     *
+     * @return null|string
+     */
+    protected function formatDobDate($value)
+    {
+        // try to format the date according to the configured date format
+        $formattedDate = $this->getSubject()->getDateConverter()->convert($value);
+
+        $format = 'Y-m-d H:i:s';
+        $dateTime = \DateTime::createFromFormat($format, $formattedDate);
+
+        if (!$dateTime) {
+            return null;
+        }
+
+        // return the formatted date
+        return $formattedDate;
     }
 }

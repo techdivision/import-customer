@@ -1,3 +1,13 @@
+# Version 17.0.2
+
+## Bugfixes
+
+* Pac-622: Bugfix- format invalid dob value
+
+## Features
+
+* none
+
 # Version 17.0.1
 
 ## Bugfixes
