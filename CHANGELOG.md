@@ -1,3 +1,13 @@
+# Version 17.0.4
+
+## Bugfixes
+
+* Use strict mode handling in customer import
+
+## Features
+
+* none
+
 # Version 17.0.3
 
 ## Bugfixes

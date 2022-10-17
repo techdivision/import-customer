@@ -15,6 +15,7 @@
 namespace TechDivision\Import\Customer\Observers;
 
 use TechDivision\Import\Observers\CleanUpEmptyColumnsTrait;
+use TechDivision\Import\Utils\RegistryKeys;
 use TechDivision\Import\Utils\EntityTypeCodes;
 use TechDivision\Import\Observers\StateDetectorInterface;
 use TechDivision\Import\Customer\Utils\GenderKeys;
@@ -101,8 +102,32 @@ class CustomerObserver extends AbstractCustomerImportObserver
         // prepare the static entity values
         $customer = $this->initializeCustomer($this->prepareAttributes());
         if ($this->hasChanges($customer)) {
-            // insert the entity and set the entity ID
-            $this->setLastEntityId($this->persistCustomer($customer));
+            try {
+                // insert the entity and set the entity ID
+                $this->setLastEntityId($this->persistCustomer($customer));
+            } catch (\Exception $e) {
+                if (!$this->isStrictMode()) {
+                    $message = sprintf(
+                        'can\'t import customer with email %s! Error: %s',
+                        $this->getValue(ColumnKeys::EMAIL),
+                        $e->getMessage()
+                    );
+                    $this->mergeStatus(
+                        array(
+                            RegistryKeys::NO_STRICT_VALIDATIONS => array(
+                                basename($this->getFilename()) => array(
+                                    $this->getLineNumber() => array(
+                                        ColumnKeys::EMAIL => $message,
+                                    ),
+                                ),
+                            ),
+                        )
+                    );
+                    $this->skipRow();
+                } else {
+                    throw $e;
+                }
+            }
         } else {
             // set the entity ID
             $this->setLastEntityId($customer[MemberNames::ENTITY_ID]);
@@ -224,6 +249,7 @@ class CustomerObserver extends AbstractCustomerImportObserver
      */
     protected function initializeCustomer(array $attr)
     {
+
         // load the customer with the passed SKU and merge it with the attributes
         if ($entity = $this->loadCustomerByEmailAndWebsiteId($attr[MemberNames::EMAIL], $attr[MemberNames::WEBSITE_ID])) {
             // clear row elements that are not allowed to be updated
