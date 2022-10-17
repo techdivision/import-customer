@@ -1,3 +1,17 @@
+# Version 17.0.3
+
+## Bugfixes
+
+* Fix customer import
+  * remove created_at on update
+  * add is_active on csv import
+  * Format DOB without time
+  * Clear columns on update to update only fields that not null. Use `__EMPTY__VALUE__` instead
+
+## Features
+
+* none
+
 # Version 17.0.2
 
 ## Bugfixes

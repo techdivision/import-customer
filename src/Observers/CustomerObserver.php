@@ -14,6 +14,7 @@
 
 namespace TechDivision\Import\Customer\Observers;
 
+use TechDivision\Import\Observers\CleanUpEmptyColumnsTrait;
 use TechDivision\Import\Utils\EntityTypeCodes;
 use TechDivision\Import\Observers\StateDetectorInterface;
 use TechDivision\Import\Customer\Utils\GenderKeys;
@@ -33,6 +34,7 @@ use TechDivision\Import\Customer\Services\CustomerBunchProcessorInterface;
 class CustomerObserver extends AbstractCustomerImportObserver
 {
 
+    use CleanUpEmptyColumnsTrait;
     /**
      * The customer bunch processor instance.
      *
@@ -98,9 +100,13 @@ class CustomerObserver extends AbstractCustomerImportObserver
 
         // prepare the static entity values
         $customer = $this->initializeCustomer($this->prepareAttributes());
-
-        // insert the entity and set the entity ID
-        $this->setLastEntityId($this->persistCustomer($customer));
+        if ($this->hasChanges($customer)) {
+            // insert the entity and set the entity ID
+            $this->setLastEntityId($this->persistCustomer($customer));
+        } else {
+            // set the entity ID
+            $this->setLastEntityId($customer[MemberNames::ENTITY_ID]);
+        }
     }
 
     /**
@@ -110,7 +116,6 @@ class CustomerObserver extends AbstractCustomerImportObserver
      */
     protected function prepareAttributes()
     {
-
         // initialize the customer values
         $email = $this->getValue(ColumnKeys::EMAIL);
         $groupId = $this->getValue(ColumnKeys::GROUP_ID);
@@ -147,7 +152,7 @@ class CustomerObserver extends AbstractCustomerImportObserver
 
         // load the customer's additional attributes
         $createdIn = $this->getValue(ColumnKeys::CREATED_IN);
-        $isActive = 1;
+        $isActive = $this->getValue(ColumnKeys::IS_ACTIVE);
         $failuresNum = 0;
         $firstFailure = null;
         $lockExpires = null;
@@ -219,10 +224,24 @@ class CustomerObserver extends AbstractCustomerImportObserver
      */
     protected function initializeCustomer(array $attr)
     {
-
         // load the customer with the passed SKU and merge it with the attributes
         if ($entity = $this->loadCustomerByEmailAndWebsiteId($attr[MemberNames::EMAIL], $attr[MemberNames::WEBSITE_ID])) {
+            // clear row elements that are not allowed to be updated
+            $attr = $this->clearRowData($attr, true);
+
+            // remove the created at date from the attributes, when we update the entity
+            unset($attr[MemberNames::CREATED_AT]);
+
             return $this->mergeEntity($entity, $attr);
+        } else {
+            // cleanup __EMPTY__VALUE__ entries, don't remove array elements
+            $attr = $this->clearRowData($attr, false);
+        }
+
+        
+        // New Customer always active
+        if ($attr[MemberNames::IS_ACTIVE] == null) {
+            $attr[MemberNames::IS_ACTIVE] = 1;
         }
 
         // otherwise simply return the attributes
@@ -346,7 +365,7 @@ class CustomerObserver extends AbstractCustomerImportObserver
             return null;
         }
 
-        // return the formatted date
-        return $formattedDate;
+        // return the formatted date for birthday
+        return $dateTime->format('Y-m-d');
     }
 }

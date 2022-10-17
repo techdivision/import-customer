@@ -214,4 +214,11 @@ class ColumnKeys extends \TechDivision\Import\Utils\ColumnKeys
      * @var string
      */
     const INCREMENT_ID = 'increment_id';
+
+    /**
+     * Name for the member 'is_active'.
+     *
+     * @var string
+     */
+    const IS_ACTIVE = 'is_active';
 }
