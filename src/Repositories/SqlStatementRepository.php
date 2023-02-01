@@ -43,6 +43,11 @@ class SqlStatementRepository extends \TechDivision\Import\Repositories\SqlStatem
                FROM ${table:customer_entity}
               WHERE email = :email
                 AND website_id = :website_id',
+        SqlStatementKeys::CUSTOMER_BY_WEBSITE_ID_AND_INCREMET_ID =>
+            'SELECT *
+               FROM ${table:customer_entity}
+              WHERE website_id = :website_id
+                AND increment_id = :increment_id',
         SqlStatementKeys::CUSTOMERS =>
             'SELECT *
                FROM ${table:customer_entity}',

@@ -41,6 +41,13 @@ class SqlStatementKeys extends \TechDivision\Import\Utils\SqlStatementKeys
     const CUSTOMER_BY_EMAIL_AND_WEBSITE_ID = 'customer.by.email.and.website_id';
 
     /**
+     * The SQL statement to load the customer with the passed email and website ID and Increment Id.
+     *
+     * @var string
+     */
+    const CUSTOMER_BY_WEBSITE_ID_AND_INCREMET_ID = 'customer.by.email.and.website_id.and.increment_id';
+
+    /**
      * The SQL statement to load the available customers.
      *
      * @var string

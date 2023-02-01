@@ -250,8 +250,18 @@ class CustomerObserver extends AbstractCustomerImportObserver
     protected function initializeCustomer(array $attr)
     {
 
-        // load the customer with the passed SKU and merge it with the attributes
+        // load the customer with the passed email and website ID and merge it with the attributes
         if ($entity = $this->loadCustomerByEmailAndWebsiteId($attr[MemberNames::EMAIL], $attr[MemberNames::WEBSITE_ID])) {
+            // clear row elements that are not allowed to be updated
+            $attr = $this->clearRowData($attr, true);
+
+            // remove the created at date from the attributes, when we update the entity
+            unset($attr[MemberNames::CREATED_AT]);
+
+            return $this->mergeEntity($entity, $attr);
+
+            // try to load the customer with the given increment ID and the website id
+        } elseif (!empty($attr[MemberNames::INCREMENT_ID])  && $entity = $this->loadCustomerByWebsiteIdAndIncrementId($attr[MemberNames::WEBSITE_ID], $attr[MemberNames::INCREMENT_ID])) {
             // clear row elements that are not allowed to be updated
             $attr = $this->clearRowData($attr, true);
 
@@ -338,6 +348,19 @@ class CustomerObserver extends AbstractCustomerImportObserver
     protected function loadCustomerByEmailAndWebsiteId($email, $websiteId)
     {
         return $this->getCustomerBunchProcessor()->loadCustomerByEmailAndWebsiteId($email, $websiteId);
+    }
+
+    /**
+     * Return's the customer with the passed increment ID and website ID.
+     *
+     * @param string $incrementId The increment ID of the customer to return
+     * @param string $websiteId   The website ID of the customer to return
+     *
+     * @return array|null The customer
+     */
+    protected function loadCustomerByWebsiteIdAndIncrementId($websiteId, $incrementId)
+    {
+        return $this->getCustomerBunchProcessor()->loadCustomerByWebsiteIdAndIncrementId($websiteId, $incrementId);
     }
 
     /**

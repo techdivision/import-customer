@@ -1,3 +1,13 @@
+# Version 17.0.5
+
+## Bugfixes
+
+* Override customer update with existing (website_id and increment_id) or (email and website_id)
+
+## Features
+
+* none
+
 # Version 17.0.4
 
 ## Bugfixes

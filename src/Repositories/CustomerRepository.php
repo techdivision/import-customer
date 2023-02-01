@@ -45,6 +45,13 @@ class CustomerRepository extends AbstractRepository implements CustomerRepositor
     protected $customerByEmailAndWebsiteIdStmt;
 
     /**
+     * The prepared statement to load a customer with the passed email and website ID.
+     *
+     * @var \PDOStatement
+     */
+    protected $customerByWebsiteIdAndIncrementIdStmt;
+
+    /**
      * The prepared statement to load the existing customers.
      *
      * @var \PDOStatement
@@ -64,6 +71,8 @@ class CustomerRepository extends AbstractRepository implements CustomerRepositor
             $this->getConnection()->prepare($this->loadStatement(SqlStatementKeys::CUSTOMER));
         $this->customerByEmailAndWebsiteIdStmt =
             $this->getConnection()->prepare($this->loadStatement(SqlStatementKeys::CUSTOMER_BY_EMAIL_AND_WEBSITE_ID));
+        $this->customerByWebsiteIdAndIncrementIdStmt =
+            $this->getConnection()->prepare($this->loadStatement(SqlStatementKeys::CUSTOMER_BY_WEBSITE_ID_AND_INCREMET_ID));
         $this->customersStmt =
             $this->getConnection()->prepare($this->loadStatement(SqlStatementKeys::CUSTOMERS));
     }
@@ -115,5 +124,27 @@ class CustomerRepository extends AbstractRepository implements CustomerRepositor
         // if not, try to load the customer with the passed email and website ID
         $this->customerByEmailAndWebsiteIdStmt->execute($params);
         return $this->customerByEmailAndWebsiteIdStmt->fetch(\PDO::FETCH_ASSOC);
+    }
+
+    /**
+     * Return's the customer with the passed email, website ID and increment id.
+     *
+     * @param string $websiteId The website ID of the customer to return
+     * @param string $increment_id The website ID of the customer to return
+     *
+     * @return array|null The customer
+     */
+    public function loadCustomerByWebsiteIdAndIncrementId($websiteId, $increment_id)
+    {
+
+        // initialize the params
+        $params = array(
+            MemberNames::WEBSITE_ID => $websiteId,
+            MemberNames::INCREMENT_ID => $increment_id
+        );
+
+        // if not, try to load the customer with the passed email and website ID
+        $this->customerByWebsiteIdAndIncrementIdStmt->execute($params);
+        return $this->customerByWebsiteIdAndIncrementIdStmt->fetch(\PDO::FETCH_ASSOC);
     }
 }

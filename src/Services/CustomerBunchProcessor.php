@@ -581,6 +581,19 @@ class CustomerBunchProcessor implements CustomerBunchProcessorInterface
     }
 
     /**
+     *  Return's the customer with the passed website ID and increment ID.
+     * @param string $email     The email of the customer to return
+     * @param string $websiteId The website ID of the customer to return
+     * @param string $incrementId The increment ID of the customer to return
+     *
+     * @return array|null The customer
+     */
+    public function loadCustomerByWebsiteIdAndIncrementId($websiteId, $incrementId)
+    {
+        return $this->getCustomerRepository()->loadCustomerByWebsiteIdAndIncrementId($websiteId, $incrementId);
+    }
+
+    /**
      * Persist's the passed customer data and return's the ID.
      *
      * @param array       $customer The customer data to persist

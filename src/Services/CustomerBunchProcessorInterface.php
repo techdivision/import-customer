@@ -151,6 +151,16 @@ interface CustomerBunchProcessorInterface extends CustomerProcessorInterface, Ea
     public function loadCustomerByEmailAndWebsiteId($email, $websiteId);
 
     /**
+     * Return's the customer with the passed website ID and increment ID.
+     *
+     * @param string $websiteId The website ID of the customer to return
+     * @param string $incrementId The increment ID of the customer to return
+     *
+     * @return array|null The customer
+     */
+    public function loadCustomerByWebsiteIdAndIncrementId($websiteId, $incrementId);
+
+    /**
      * Persist's the passed customer data and return's the ID.
      *
      * @param array       $customer The customer data to persist
