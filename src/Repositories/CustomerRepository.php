@@ -129,7 +129,7 @@ class CustomerRepository extends AbstractRepository implements CustomerRepositor
     /**
      * Return's the customer with the passed email, website ID and increment id.
      *
-     * @param string $websiteId The website ID of the customer to return
+     * @param string $websiteId    The website ID of the customer to return
      * @param string $increment_id The website ID of the customer to return
      *
      * @return array|null The customer

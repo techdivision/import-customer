@@ -261,7 +261,7 @@ class CustomerObserver extends AbstractCustomerImportObserver
             return $this->mergeEntity($entity, $attr);
 
             // try to load the customer with the given increment ID and the website id
-        } elseif (!empty($attr[MemberNames::INCREMENT_ID])  && $entity = $this->loadCustomerByWebsiteIdAndIncrementId($attr[MemberNames::WEBSITE_ID], $attr[MemberNames::INCREMENT_ID])) {
+        } elseif (!empty($attr[MemberNames::INCREMENT_ID]) && $entity = $this->loadCustomerByWebsiteIdAndIncrementId($attr[MemberNames::WEBSITE_ID], $attr[MemberNames::INCREMENT_ID])) {
             // clear row elements that are not allowed to be updated
             $attr = $this->clearRowData($attr, true);
 
@@ -274,7 +274,7 @@ class CustomerObserver extends AbstractCustomerImportObserver
             $attr = $this->clearRowData($attr, false);
         }
 
-        
+
         // New Customer always active
         if ($attr[MemberNames::IS_ACTIVE] == null) {
             $attr[MemberNames::IS_ACTIVE] = 1;
@@ -353,8 +353,8 @@ class CustomerObserver extends AbstractCustomerImportObserver
     /**
      * Return's the customer with the passed increment ID and website ID.
      *
-     * @param string $incrementId The increment ID of the customer to return
      * @param string $websiteId   The website ID of the customer to return
+     * @param string $incrementId The increment ID of the customer to return
      *
      * @return array|null The customer
      */
