@@ -305,6 +305,12 @@ class CustomerObserver extends AbstractCustomerImportObserver
             return null;
         }
 
+        // if no there is a different gender in the import file than available in magento,
+        // import the customer without gender if strict mode is disabled
+        if (!$this->isStrictMode()) {
+            return null;
+        }
+
         // throw an exception, if not
         throw new \Exception(
             $this->appendExceptionSuffix(
