@@ -1,3 +1,13 @@
+# Version 17.1.0
+
+## Bugfixes
+
+* none
+
+## Features
+
+* Added strict mode handling for gender value
+
 # Version 17.0.5
 
 ## Bugfixes
