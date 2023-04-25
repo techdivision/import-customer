@@ -307,14 +307,28 @@ class CustomerObserver extends AbstractCustomerImportObserver
 
         // if no there is a different gender in the import file than available in magento,
         // import the customer without gender if strict mode is disabled
+        $message = sprintf(
+            'Found invalid gender "%s"',
+            $value,
+        );
         if (!$this->isStrictMode()) {
+            $this->mergeStatus(
+                array(
+                    RegistryKeys::NO_STRICT_VALIDATIONS => array(
+                        basename($this->getFilename()) => array(
+                            $this->getLineNumber() => array(
+                                ColumnKeys::GENDER => $message,
+                            ),
+                        ),
+                    ),
+                )
+            );
             return null;
         }
-
         // throw an exception, if not
         throw new \Exception(
             $this->appendExceptionSuffix(
-                sprintf('Found invalid gender %s', $value)
+                $message
             )
         );
     }
