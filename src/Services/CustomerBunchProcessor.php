@@ -582,7 +582,7 @@ class CustomerBunchProcessor implements CustomerBunchProcessorInterface
 
     /**
      *  Return's the customer with the passed website ID and increment ID.
-     * @param string $websiteId The website ID of the customer to return
+     * @param string $websiteId   The website ID of the customer to return
      * @param string $incrementId The increment ID of the customer to return
      *
      * @return array|null The customer

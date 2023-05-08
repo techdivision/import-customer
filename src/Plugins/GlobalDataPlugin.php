@@ -37,13 +37,13 @@ class GlobalDataPlugin extends AbstractPlugin
     protected $customerBunchProcessor;
 
     /**
-     * @param ApplicationInterface $application
-     * @param CustomerBunchProcessorInterface $customerBunchProcessor
+     * @param ApplicationInterface $application                       The application instance
+     * @param CustomerBunchProcessorInterface $customerBunchProcessor The processor instance
      */
     public function __construct(
         ApplicationInterface $application,
         CustomerBunchProcessorInterface $customerBunchProcessor
-    ){
+    ) {
         $this->customerBunchProcessor = $customerBunchProcessor;
         parent::__construct($application);
     }
