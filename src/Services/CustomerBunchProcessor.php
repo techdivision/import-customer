@@ -581,9 +581,9 @@ class CustomerBunchProcessor implements CustomerBunchProcessorInterface
     }
 
     /**
-     * Return's the customer with the passed website ID and increment ID.
-     *
-     * @param string $websiteId   The website ID of the customer to return
+     *  Return's the customer with the passed website ID and increment ID.
+     * @param string $email     The email of the customer to return
+     * @param string $websiteId The website ID of the customer to return
      * @param string $incrementId The increment ID of the customer to return
      *
      * @return array|null The customer
@@ -591,6 +591,14 @@ class CustomerBunchProcessor implements CustomerBunchProcessorInterface
     public function loadCustomerByWebsiteIdAndIncrementId($websiteId, $incrementId)
     {
         return $this->getCustomerRepository()->loadCustomerByWebsiteIdAndIncrementId($websiteId, $incrementId);
+    }
+
+    /**
+     * @return mixed
+     */
+    public function loadDirectoryCountryRegions()
+    {
+        return $this->getCustomerRepository()->findDirectoryCountryRegions();
     }
 
     /**
