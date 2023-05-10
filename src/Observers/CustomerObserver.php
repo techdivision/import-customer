@@ -274,7 +274,6 @@ class CustomerObserver extends AbstractCustomerImportObserver
             $attr = $this->clearRowData($attr, false);
         }
 
-
         // New Customer always active
         if ($attr[MemberNames::IS_ACTIVE] == null) {
             $attr[MemberNames::IS_ACTIVE] = 1;

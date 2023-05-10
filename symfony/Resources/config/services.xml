@@ -393,6 +393,14 @@
             </call>
         </service>
 
+        <!--
+         | The DI Customer address plugin configuration
+        |-->
+        <service id="import.customer.plugin.global.data" class="TechDivision\Import\Customer\Plugins\GlobalDataPlugin">
+            <argument type="service" id="import_app_simple.simple"/>
+            <argument type="service" id="import_customer.processor.customer.bunch" />
+        </service>
+
     </services>
 
 </container>

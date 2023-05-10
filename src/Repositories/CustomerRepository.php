@@ -59,6 +59,10 @@ class CustomerRepository extends AbstractRepository implements CustomerRepositor
     protected $customersStmt;
 
     /**
+     * @var PDOStatement
+     */
+    protected $directoryCountryRegionsStatement;
+    /**
      * Initializes the repository's prepared statements.
      *
      * @return void
@@ -75,6 +79,8 @@ class CustomerRepository extends AbstractRepository implements CustomerRepositor
             $this->getConnection()->prepare($this->loadStatement(SqlStatementKeys::CUSTOMER_BY_WEBSITE_ID_AND_INCREMET_ID));
         $this->customersStmt =
             $this->getConnection()->prepare($this->loadStatement(SqlStatementKeys::CUSTOMERS));
+        $this->directoryCountryRegionsStatement =
+            $this->getConnection()->prepare($this->loadStatement(SqlStatementKeys::SELECT_DIRECTORY_COUNTRY_REGIONS));
     }
 
     /**
@@ -146,5 +152,29 @@ class CustomerRepository extends AbstractRepository implements CustomerRepositor
         // if not, try to load the customer with the passed email and website ID
         $this->customerByWebsiteIdAndIncrementIdStmt->execute($params);
         return $this->customerByWebsiteIdAndIncrementIdStmt->fetch(\PDO::FETCH_ASSOC);
+    }
+
+    /**
+     * Return's all country regions from directory
+     *
+     * @return array
+     */
+    public function findDirectoryCountryRegions()
+    {
+        $directoryCountryRegions = [];
+
+        // execute the prepared statement
+        $this->directoryCountryRegionsStatement->execute();
+
+        // load the available customer groups
+        $avalaibleDirectoryCountryRegions = $this->directoryCountryRegionsStatement->fetchAll();
+
+        // fetch the directory regions and assemble them as array with the codes as key
+        foreach ($avalaibleDirectoryCountryRegions as $countryRegion) {
+            $directoryCountryRegions[$countryRegion[\TechDivision\Import\Customer\Address\Utils\MemberNames::DIRECTORY_REGION_CODE]] = $countryRegion;
+        }
+
+        // return the customer groups
+        return $directoryCountryRegions;
     }
 }

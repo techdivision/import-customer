@@ -22,7 +22,7 @@
           "general/customer/replace.address"
         ],
         "add-update": [
-          "general/general/global-data",
+          "general/customer/global-data",
           "general/general/move-files",
           "general/customer/convert",
           "general/customer/add-update.options",

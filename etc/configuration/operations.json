@@ -2,6 +2,13 @@
   "operations": {
     "general": {
       "customer": {
+        "global-data": {
+          "plugins": {
+            "global-data": {
+              "id": "import.customer.plugin.global.data"
+            }
+          }
+        },
         "validate": {
           "plugins": {
             "subject": {

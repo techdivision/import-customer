@@ -229,4 +229,11 @@ class SqlStatementKeys extends \TechDivision\Import\Utils\SqlStatementKeys
      * @var string
      */
     const DELETE_CUSTOMER_TEXT = 'delete.customer_text';
+
+    /**
+     * The SQL statement to read all existing fix product tax.
+     *
+     * @var string
+     */
+    const SELECT_DIRECTORY_COUNTRY_REGIONS = 'select.entries.directory_country_region';
 }

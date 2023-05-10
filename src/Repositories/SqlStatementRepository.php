@@ -188,6 +188,9 @@ class SqlStatementRepository extends \TechDivision\Import\Repositories\SqlStatem
             'DELETE
                FROM ${table:customer_entity_text}
               WHERE value_id = :value_id',
+        SqlStatementKeys::SELECT_DIRECTORY_COUNTRY_REGIONS =>
+            'SELECT *
+               FROM ${table:directory_country_region}',
     );
 
     /**
