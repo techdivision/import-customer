@@ -235,5 +235,5 @@ class SqlStatementKeys extends \TechDivision\Import\Utils\SqlStatementKeys
      *
      * @var string
      */
-    const SELECT_DIRECTORY_COUNTRY_REGION = 'select.entries.directory_country_region';
+    const SELECT_DIRECTORY_COUNTRY_REGIONS = 'select.entries.directory_country_region';
 }

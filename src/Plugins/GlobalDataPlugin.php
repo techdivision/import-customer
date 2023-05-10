@@ -18,7 +18,7 @@ namespace TechDivision\Import\Customer\Plugins;
 use TechDivision\Import\ApplicationInterface;
 use TechDivision\Import\Customer\Services\CustomerBunchProcessorInterface;
 use TechDivision\Import\Plugins\AbstractPlugin;
-use TechDivision\Import\Customer\Address\Utils\RegistryKeys;
+use TechDivision\Import\Customer\Utils\RegistryKeys;
 
 /**
  * Plugin that loads the global data.
@@ -37,7 +37,7 @@ class GlobalDataPlugin extends AbstractPlugin
     protected $customerBunchProcessor;
 
     /**
-     * @param ApplicationInterface $application                       The application instance
+     * @param ApplicationInterface            $application            The application instance
      * @param CustomerBunchProcessorInterface $customerBunchProcessor The processor instance
      */
     public function __construct(

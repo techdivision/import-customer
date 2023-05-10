@@ -80,7 +80,7 @@ class CustomerRepository extends AbstractRepository implements CustomerRepositor
         $this->customersStmt =
             $this->getConnection()->prepare($this->loadStatement(SqlStatementKeys::CUSTOMERS));
         $this->directoryCountryRegionsStatement =
-            $this->getConnection()->prepare($this->loadStatement(SqlStatementKeys::SELECT_DIRECTORY_COUNTRY_REGION));
+            $this->getConnection()->prepare($this->loadStatement(SqlStatementKeys::SELECT_DIRECTORY_COUNTRY_REGIONS));
     }
 
     /**

@@ -27,6 +27,13 @@ class RegistryKeys extends \TechDivision\Import\Utils\RegistryKeys
 {
 
     /**
+     * Key for the registry entry containing the country Regions.
+     *
+     * @var string
+     */
+    const COUNTRY_REGIONS = 'countryRegions';
+
+    /**
      * Key for the registry entry containing the preloaded SKU => entity ID mapping.
      *
      * @var string
