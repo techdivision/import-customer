@@ -58,11 +58,11 @@ class CustomerObserver extends AbstractCustomerImportObserver
      * Initializes the observer with the state detector instance.
      *
      * @param \TechDivision\Import\Customer\Services\CustomerBunchProcessorInterface $customerBunchProcessor The customer bunch processor instance
-     * @param \TechDivision\Import\Observers\StateDetectorInterface                  $stateDetector          The state detector instance
+     * @param \TechDivision\Import\Observers\StateDetectorInterface|null                  $stateDetector          The state detector instance
      */
     public function __construct(
         CustomerBunchProcessorInterface $customerBunchProcessor,
-        StateDetectorInterface $stateDetector = null
+        ?StateDetectorInterface $stateDetector = null
     ) {
 
         // set the customer processor and the raw entity loader
