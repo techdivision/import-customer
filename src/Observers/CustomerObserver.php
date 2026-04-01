@@ -296,7 +296,7 @@ class CustomerObserver extends AbstractCustomerImportObserver
 
         // query whether or not, the requested gender ID is available
         if (isset($this->availableGenders[$value])) {
-            return (integer) $this->availableGenders[$value];
+            return (int)$this->availableGenders[$value];
         }
 
         // allow null values and empty strings
